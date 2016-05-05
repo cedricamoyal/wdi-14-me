@@ -1,0 +1,65 @@
+body {
+  background-color: gainsboro;
+  text-align: center;
+}
+
+.constant {
+  width: 200px;
+  height: 10px;
+  background-color: black;
+}
+
+.boxmodel {
+  width: 200px;
+  padding: 15px;
+  margin: 10px;
+  border: 10px solid lemonchiffon;
+  background-color: hotpink;
+}
+
+.container .leftSidebar {
+  width: 70%;
+  height: 500px;
+  background-color: purple;
+  display: inline-block;
+}
+
+.container-float .leftSidebar {
+  width: 70%;
+  height: 500px;
+  background-color: purple;
+  display: inline-block;
+  float: left;
+}
+
+.container .rightSidebar {
+  width: 29%;
+  height: 200px;
+  background-color: chartreuse;
+  display: inline-block;
+}
+
+.container-float .rightSidebar {
+  width: 30%;
+  height: 200px;
+  background-color: chartreuse;
+  display: inline-block;
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+.block {
+  height: 200px;
+  width: 50%;
+  background-color: papayawhip;
+  margin: 0 auto;
+}
+
+img {
+  width: 100px;
+  display: inline-block;
+
+}
