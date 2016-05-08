@@ -43,10 +43,12 @@ var thumbnailify = function ($link){
 
 
 // each loop:
-$allLinks.each(function () {
+$allCells.each(function () {
   var $currentLink = $( this );
   thumbnailify ( $currentLink );
 });
+
+$aT.html("Something else");
 
 
 
