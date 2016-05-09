@@ -1,22 +1,50 @@
+
+
 .cell {
   border: 1px solid black;
   border-radius: 15px;
   width: 200px;
   height: 200px;
   display: inline-block;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
 }
 
 .tictactoe {
-  border: 1px dashed red;
-  border-radius: 15px;
+  /*border: 1px dashed red;
+  border-radius: 15px;*/
   width: 614px;
   height: 614px;
   display: inline-block;
 }
 
 .mainTic {
-  border: 5px solid green;
+  /*border: 5px solid green;*/
+  padding: 30px;
   text-align: center;
+}
+
+.newGameButton {
+  display: inline-block;
+      margin-bottom: 3px;
+      padding: 13px 32px;
+      padding: .8125rem 2rem;
+      border: 0;
+      font-family: Circular,Helvetica,Arial,sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      font-size: 1.125rem;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      border-radius: 3px;
+      color: #fff;
+      background-color: #fa4542;
+      box-shadow: 0 3px 0 0 #be0201;
+      text-decoration: none;
 }
 
 @media screen and (max-width: 700px) {
@@ -29,4 +57,40 @@
     width: 320px;
     height: 320px;
   }
+}
+
+.number0 {
+  border-top: none;
+  border-left: none;
+}
+
+.number1 {
+  border-top: none;
+}
+
+.number2 {
+  border-top: none;
+  border-right: none;
+}
+
+.number3 {
+  border-left: none;
+}
+
+.number5 {
+  border-right: none;
+}
+
+.number6 {
+  border-bottom: none;
+  border-left: none;
+}
+
+.number7 {
+  border-bottom: none;
+}
+
+.number8 {
+  border-bottom: none;
+  border-right: none;
 }
