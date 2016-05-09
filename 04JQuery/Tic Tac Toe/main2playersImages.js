@@ -3,6 +3,9 @@ console.log("Tic Tac Toe");
 var $allCells = $(".cell");
 var $newGameButtonAction = $(".newGameButton");
 
+var $crossWinsAction = $(".crossWins");
+var $circleWinsAction = $(".circleWins");
+
 var image00 = "url(http://image.spreadshirtmedia.com/image-server/v1/designs/10961530,width=280,height=280?mediaType=png)";
 
 var image11 = "url(https://raw.githubusercontent.com/christkv/tic-tac-toe/master/public/img/cross.png)";
@@ -21,6 +24,12 @@ var counter = 0;
 var selectedCells = [];
 var winner;
 var winningCells;
+
+var theCrossWins = 0;
+var theCircleWins = 0;
+
+$crossWinsAction.html("The cross's points: " + theCrossWins );
+$circleWinsAction.html("The circle's points: " + theCircleWins );
 
 
 
@@ -47,7 +56,7 @@ var winningCells;
             selectedCells.push($currentCell.index());
             console.log("The following cells have already been selected: " + selectedCells);
 
-// For player green to win:
+// For the cross to win:
 
             for (var i = 0; i < 3; i++) {
                 if ($allCells[0+(3*i)].style.backgroundImage === image1 &&
@@ -60,6 +69,7 @@ var winningCells;
                   $allCells[2+(3*i)].style.backgroundColor = "yellow";
 
                     winner = "The cross";
+                    theCrossWins++;
                     thereIsAWinnerAlert();
                   }
                  }
@@ -74,6 +84,7 @@ var winningCells;
                    $allCells[6+i].style.backgroundColor = "yellow";
 
                      winner = "The cross";
+                     theCrossWins++;
                      thereIsAWinnerAlert();
                    }
                   }
@@ -87,6 +98,7 @@ var winningCells;
                 $allCells[8].style.backgroundColor = "yellow";
 
                   winner = "The cross";
+                  theCrossWins++;
                   thereIsAWinnerAlert();
                 }
 
@@ -99,10 +111,11 @@ var winningCells;
                 $allCells[6].style.backgroundColor = "yellow";
 
                   winner = "The cross";
+                  theCrossWins++;
                   thereIsAWinnerAlert();
                 }
 
-// For player blue to win:
+// For circle to win:
 
             for (var i = 0; i < 3; i++) {
                 if ($allCells[0+(3*i)].style.backgroundImage === image2 &&
@@ -115,6 +128,7 @@ var winningCells;
                   $allCells[2+(3*i)].style.backgroundColor = "yellow";
 
                     winner = "The circle";
+                    theCircleWins++;
                     thereIsAWinnerAlert();
                   }
                  }
@@ -129,6 +143,7 @@ var winningCells;
                        $allCells[6+i].style.backgroundColor = "yellow";
 
                          winner = "The circle";
+                         theCircleWins++;
                          thereIsAWinnerAlert();
                        }
                       }
@@ -142,6 +157,7 @@ var winningCells;
                         $allCells[8].style.backgroundColor = "yellow";
 
                           winner = "The circle";
+                          theCircleWins++;
                           thereIsAWinnerAlert();
                         }
 
@@ -154,6 +170,7 @@ var winningCells;
                         $allCells[6].style.backgroundColor = "yellow";
 
                           winner = "The circle";
+                          theCircleWins++;
                           thereIsAWinnerAlert();
                         }
 //Tie
@@ -172,12 +189,15 @@ var winningCells;
               )
               { tieAlert(); }
 
+              $crossWinsAction.html("The cross's points: " + theCrossWins );
+              $circleWinsAction.html("The circle's points: " + theCircleWins );
 
           });
 
 $newGameButtonAction.on("click",function () {
     $allCells.css("background-image", image00);
     $allCells.css("background-color", "white");
+    newGameAlert();
     console.log("You asked for a new game?");
 });
 
@@ -191,4 +211,8 @@ var thereIsAWinnerAlert = function(){
 
 var tieAlert = function(){
   swal({   title: "Tie !",   text: "I am sure that you can do better !",   type: "success",   confirmButtonText: "Play again" });
+}
+
+var newGameAlert = function() {
+  swal({   title: "Are you finished with this game?",   text: "This will start a new game.",   type: "warning",   showCancelButton: true,   confirmButtonColor: "#DD6B55",   confirmButtonText: "Yes, let's start a new game",   closeOnConfirm: false }, function(){   swal("It is ok", "Here is the new game.", "success"); });
 }
