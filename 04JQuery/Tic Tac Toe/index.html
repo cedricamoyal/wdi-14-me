@@ -9,32 +9,53 @@
 </head>
 <body>
 
-  <div class="mainTic">
-      <div class="tictactoe">
-        <div class="cell number0"></div>
-        <div class="cell number1"></div>
-        <div class="cell number2"></div>
+    <div class="playerS">
+        <div class="playerChoice1">
+          <p>Player 1 icon:</p>
+          <i class="fa fa-times" aria-hidden="true"></i>
+          <i class="fa fa-coffee" aria-hidden="true"></i>
+          <i class="fa fa-bicycle" aria-hidden="true"></i>
+          <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </div>
 
-        <div class="cell number3"></div>
-        <div class="cell number4"></div>
-        <div class="cell number5"></div>
+        <div class="playerChoice2">
+          <p>Player 2 icon:</p>
+          <i class="fa fa-futbol-o" aria-hidden="true"></i>
+          <i class="fa fa-hashtag" aria-hidden="true"></i>
+          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+          <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
 
-        <div class="cell number6"></div>
-        <div class="cell number7"></div>
-        <div class="cell number8"></div>
-      </div>
-      <br>
-      <br>
-      <div class="allWins crossWins"></div>
-      <div class="allWins circleWins"></div>
-      <br>
-      <br>
-      <button type="button" class="newGameButton">New game</button>
-  </div>
+        </div>
+    </div>
+
+    <div class="mainTic">
+        <div class="tictactoe">
+          <div class="cell number0"></div>
+          <div class="cell number1"></div>
+          <div class="cell number2"></div>
+
+          <div class="cell number3"></div>
+          <div class="cell number4"></div>
+          <div class="cell number5"></div>
+
+          <div class="cell number6"></div>
+          <div class="cell number7"></div>
+          <div class="cell number8"></div>
+        </div>
+        <br>
+
+        <div class="allWins player1Wins"></div>
+        <div class="allWins player2Wins"></div>
+        <br>
+        <button type="button" class="newGameButton">New game</button>
+    </div>
+
+
 
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
 <script src="./sweetalert-master/dist/sweetalert.min.js"></script>
 <!-- <script src="main2playersBackground.js"></script> -->
-<script src="main2playersImages.js"></script>
+<!-- <script src="main2playersImages.js"></script> -->
+<script src="main2playersIcons.js"></script>
 </body>
 </html>
