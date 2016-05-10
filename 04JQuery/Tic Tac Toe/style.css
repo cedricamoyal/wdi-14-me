@@ -28,6 +28,8 @@ p {
 i.fa {
   font-size: 50px;
   margin: auto;
+  margin-left: 7px;
+  margin-right: 7px;
 }
 
 .tictactoe {
@@ -62,6 +64,8 @@ i.fa {
   display: inline-block;
   box-sizing: border-box;
   margin: 5px 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .playerChoice2 {
@@ -71,6 +75,8 @@ i.fa {
   display: inline-block;
   box-sizing: border-box;
   margin: 5px 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 
@@ -217,8 +223,5 @@ i.fa {
     padding-top: 5px;
     padding-bottom: 5px;
   }
-
-
-
 
 }
