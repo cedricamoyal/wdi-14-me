@@ -1,5 +1,12 @@
 console.log("Tic Tac Toe");
 
+var thisShouldBeDelayed = function () {
+   window.open("#openModal", "_self");
+ };
+window.setTimeout(thisShouldBeDelayed, 1000);
+
+
+
 var $allIcons = $(".fa");
 var $allIconsPlayer1 = $(".playerChoice1 i.fa");
 var $allIconsPlayer2 = $(".playerChoice2 i.fa");
@@ -32,6 +39,13 @@ var winningCells;
 
 var thePlayer1Wins = 0;
 var thePlayer2Wins = 0;
+
+var player1NameFromInput = "the player 1";
+var playe2NameFromInput = "the player 2";
+
+////////////////////////////////////////////
+
+
 
 $("#custom1").spectrum({
     color: chosenColorPlayer1Icons
