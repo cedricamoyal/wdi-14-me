@@ -15,7 +15,7 @@ var colorPlayer1Icons = "silver";
 var colorPlayer2Icons = "silver";
 var chosenColorPlayer1Icons = "rgba(239, 204, 17, 0.99)";
 var chosenColorPlayer2Icons = "black";
-var showWinningCellsColor = "#eee;";
+var showWinningCellsColor = "#eee";
 
 
 var $player1SelectedIcon;
@@ -25,9 +25,13 @@ $allIconsPlayer2.css("color", colorPlayer2Icons);
 
 var $allCells = $(".cell");
 var $newGameButtonAction = $(".newGameButton");
+var $letsPlayButtonAction = $(".letsPlayButton");
 
 var $player1WinsAction = $(".player1Wins");
 var $player2WinsAction = $(".player2Wins");
+
+var $player1TitleAction = $(".player1Title");
+var $player2TitleAction = $(".player2Title");
 
 $allCells.css("background-color", "white");
 
@@ -41,9 +45,27 @@ var thePlayer1Wins = 0;
 var thePlayer2Wins = 0;
 
 var player1NameFromInput = "the player 1";
-var playe2NameFromInput = "the player 2";
+var player2NameFromInput = "the player 2";
 
-////////////////////////////////////////////
+
+
+$(".player1Name").keyup(function(){
+   player1NameFromInput = $(".player1Name").val();
+});
+
+$(".player2Name").keyup(function(){
+   player2NameFromInput = $(".player2Name").val();
+});
+
+$letsPlayButtonAction.on("click",function () {
+
+  $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+  $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+
+  $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+  $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+
+});
 
 
 
@@ -74,8 +96,11 @@ $("#custom2").spectrum({
 
   });
 
-$player1WinsAction.html("The player 1 points: " + thePlayer1Wins );
-$player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
+$player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+$player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+
+$player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+$player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
     $allIconsPlayer1.on("click",function () {
         var $currentIcon = $( this );
@@ -143,7 +168,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                   $allCells[1+(3*i)].style.backgroundColor = showWinningCellsColor;
                   $allCells[2+(3*i)].style.backgroundColor = showWinningCellsColor;
 
-                    winner = "the player 1";
+                    winner = player1NameFromInput;
                     thePlayer1Wins++;
                     thereIsAWinnerAlert();
                   }
@@ -158,7 +183,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                    $allCells[3+i].style.backgroundColor = showWinningCellsColor;
                    $allCells[6+i].style.backgroundColor = showWinningCellsColor;
 
-                     winner = "the player 1";
+                     winner = player1NameFromInput;
                      thePlayer1Wins++;
                      thereIsAWinnerAlert();
                    }
@@ -172,7 +197,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                 $allCells[4].style.backgroundColor = showWinningCellsColor;
                 $allCells[8].style.backgroundColor = showWinningCellsColor;
 
-                  winner = "the player 1";
+                  winner = player1NameFromInput;
                   thePlayer1Wins++;
                   thereIsAWinnerAlert();
                 }
@@ -185,7 +210,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                 $allCells[4].style.backgroundColor = showWinningCellsColor;
                 $allCells[6].style.backgroundColor = showWinningCellsColor;
 
-                  winner = "the player 1";
+                  winner = player1NameFromInput;
                   thePlayer1Wins++;
                   thereIsAWinnerAlert();
                 }
@@ -203,7 +228,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                   $allCells[1+(3*i)].style.backgroundColor = showWinningCellsColor;
                   $allCells[2+(3*i)].style.backgroundColor = showWinningCellsColor;
 
-                    winner = "the player 2";
+                    winner = player2NameFromInput;
                     thePlayer2Wins++;
                     thereIsAWinnerAlert();
                   }
@@ -218,7 +243,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                    $allCells[3+i].style.backgroundColor = showWinningCellsColor;
                    $allCells[6+i].style.backgroundColor = showWinningCellsColor;
 
-                     winner = "the player 2";
+                     winner = player2NameFromInput;
                      thePlayer2Wins++;
                      thereIsAWinnerAlert();
                    }
@@ -232,7 +257,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                 $allCells[4].style.backgroundColor = showWinningCellsColor;
                 $allCells[8].style.backgroundColor = showWinningCellsColor;
 
-                  winner = "the player 2";
+                  winner = player2NameFromInput;
                   thePlayer2Wins++;
                   thereIsAWinnerAlert();
                 }
@@ -245,7 +270,7 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
                 $allCells[4].style.backgroundColor = showWinningCellsColor;
                 $allCells[6].style.backgroundColor = showWinningCellsColor;
 
-                  winner = "the player 2";
+                  winner = player2NameFromInput;
                   thePlayer2Wins++;
                   thereIsAWinnerAlert();
                 }
@@ -262,14 +287,17 @@ $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
               arrayOf1or2[6] !== "" &&
               arrayOf1or2[7] !== "" &&
               arrayOf1or2[8] !== "" &&
-              winner !== "the player 1" &&
-              winner !== "the player 2"
+              winner !== player1NameFromInput &&
+              winner !== player2NameFromInput
               )
               { winner = "tie";
                 tieAlert(); }
 
-              $player1WinsAction.html("The player 1 points: " + thePlayer1Wins );
-              $player2WinsAction.html("The player 2 points: " + thePlayer2Wins );
+              $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+              $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+
+              $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+              $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
           });
 
@@ -279,7 +307,7 @@ $newGameButtonAction.on("click",function () {
     arrayOf1or2 = ["","","","","","","","",""];
     $allCells.css("background-color", "white");
 
-    if ( winner !== "the player 1" && winner !== "the player 2" && winner !== "tie") {
+    if ( winner !== player1NameFromInput && winner !== player2NameFromInput && winner !== "tie") {
     newGameAlert(); }
 
     winner = "";

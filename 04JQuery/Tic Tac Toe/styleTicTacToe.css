@@ -99,6 +99,10 @@ i.fa {
       border-bottom: none;
 }
 
+.newGameButton:focus {
+  outline:0;
+}
+
 .allWins {
   display: inline-block;
   margin: 10px;
