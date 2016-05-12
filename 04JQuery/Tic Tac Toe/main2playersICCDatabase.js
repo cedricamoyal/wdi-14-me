@@ -200,10 +200,11 @@ $("#custom2").spectrum({
         $player1SelectedIcon = $currentIcon;
         updatePlayer1Color();
         updatePlayer2Color();
-
-        // player1SelectedIconData.push({ player1:$player1SelectedIcon});
+// debugger
+        // player1SelectedIconData.push({ player1:$player1SelectedIcon.attr("class").split(' ')[1]});
         // updatePlayer1SelectedIcon();
         // updatePlayer2SelectedIcon();
+        // debugger
     });
 
     $allIconsPlayer2.on("click",function () {
@@ -219,7 +220,7 @@ $("#custom2").spectrum({
         // updatePlayer1SelectedIcon();
         // updatePlayer2SelectedIcon();
     });
-
+    //
     // var messagePlayer1SelectedIcon;
     // //to get info from database:
     // player1SelectedIconData.on("child_added", function(snapshot){
@@ -227,8 +228,9 @@ $("#custom2").spectrum({
     //   console.log(snapshot.val());
     //   messagePlayer1SelectedIcon = snapshot.val()
     //   $player1SelectedIcon = messagePlayer1SelectedIcon.player1;
+    //   // debugger
     // });
-    //
+
     // var messagePlayer2SelectedIcon;
     // //to get info from database:
     // player2SelectedIconData.on("child_added", function(snapshot){
@@ -262,9 +264,7 @@ $("#custom2").spectrum({
                   $img1 = $player1SelectedIcon.clone();
                   $currentCell.append( $img1 );
 
-                  arrayOf1or2[$currentCell.index()] = "1";
-
-                  cellsPlayer1Data.push({ image1:$img1, currentCellIndex:$currentCell.index()});
+                  cellsPlayer1Data.push({currentCellIndex:$currentCell.index()});
                 }
 
 
@@ -275,7 +275,7 @@ $("#custom2").spectrum({
 
                 arrayOf1or2[$currentCell.index()] = "2";
 
-                cellsPlayer2Data.push({ image2:$img2, currentCellIndex:$currentCell.index()});
+                cellsPlayer2Data.push({currentCellIndex:$currentCell.index()});
             }
 
             console.log("You did " + counter + " valid clicks.");
@@ -427,43 +427,64 @@ $("#custom2").spectrum({
 
           });
 
-// var cellsPlayer1Data = new Firebase('https://brilliant-torch-7428.firebaseio.com/cellsPlayer1');
-  //cellsPlayer1Data.push({ image1:$img1, currentCellIndex:$currentCell.index()});
-  //$currentCell.append( $img1 );
+//////////////////
 
-  var messageCellsPlayer1Data;
+var messageCellsPlayer1Data;
 
 var updateCells1 = function () {
-  // debugger;
-  $allCells.eq(messageCellsPlayer1Data.currentCellIndex).append(messageCellsPlayer1Data.image1);
+
   arrayOf1or2[messageCellsPlayer1Data.currentCellIndex] = "1";
+
+  for (var i = 0; i < 9; i++) {
+
+        if (arrayOf1or2[i] === "1") {
+          // $allCells.eq(j).empty();
+          var $imgTest1 = $("<img>");
+          $imgTest1 = $player1SelectedIcon.clone();
+          $allCells.eq(i).append( $imgTest1 );
+          }
+  }
 };
+    //to get info from database:
+    cellsPlayer1Data.on("child_added", function(snapshot){
+      console.log(snapshot);
+      console.log(snapshot.val());
+      // debugger
+      messageCellsPlayer1Data = snapshot.val();
+      updateCells1();
 
-          //to get info from database:
-          cellsPlayer1Data.on("child_added", function(snapshot){
-            console.log(snapshot);
-            console.log(snapshot.val());
-            messageCellsPlayer1Data = snapshot.val();
-            updateCells1();
+    });
 
-          });
+  ////////////////////////////
 
-      var messageCellsPlayer2Data;
+  var messageCellsPlayer2Data;
 
-    var updateCells2 = function () {
-      // debugger;
-      $allCells.eq(messageCellsPlayer2Data.currentCellIndex).append(messageCellsPlayer2Data.image1);
-      arrayOf1or2[messageCellsPlayer2Data.currentCellIndex] = "2";
-    };
+  var updateCells2 = function () {
 
-              //to get info from database:
-              cellsPlayer2Data.on("child_added", function(snapshot){
-                console.log(snapshot);
-                console.log(snapshot.val());
-                messageCellsPlayer2Data = snapshot.val();
-                updateCells2();
+    arrayOf1or2[messageCellsPlayer2Data.currentCellIndex] = "2";
 
-              });
+    for (var i = 0; i < 9; i++) {
+
+          if (arrayOf1or2[i] === "2") {
+            // $allCells.eq(j).empty();
+            var $imgTest2 = $("<img>");
+            $imgTest2 = $player2SelectedIcon.clone();
+            $allCells.eq(i).append( $imgTest2 );
+            }
+    }
+  };
+      //to get info from database:
+      cellsPlayer2Data.on("child_added", function(snapshot){
+        console.log(snapshot);
+        console.log(snapshot.val());
+        // debugger
+        messageCellsPlayer2Data = snapshot.val();
+        updateCells2();
+
+      });
+
+/////////////////////
+
 
 
 $newGameButtonAction.on("click",function () {
