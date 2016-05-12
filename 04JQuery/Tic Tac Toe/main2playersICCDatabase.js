@@ -9,6 +9,7 @@ var cellsPlayer1Data = new Firebase('https://brilliant-torch-7428.firebaseio.com
 var cellsPlayer2Data = new Firebase('https://brilliant-torch-7428.firebaseio.com/cellsPlayer2');
 var player1SelectedIconData = new Firebase('https://brilliant-torch-7428.firebaseio.com/selectedIconPlayer1');
 var player2SelectedIconData = new Firebase('https://brilliant-torch-7428.firebaseio.com/selectedIconPlayer2');
+var playerTurnsArrayData = new Firebase('https://brilliant-torch-7428.firebaseio.com/playerTurnsArrayData');
 
 // Modal:
 var thisShouldBeDelayed = function () {
@@ -50,8 +51,9 @@ var $player2TitleAction = $(".player2Title");
 
 $allCells.css("background-color", "white");
 
-var counter = 0;
+// var counter = 0;
 var arrayOf1or2 = ["","","","","","","","",""];
+var playerTurnsArray = ["It is player 1 turn !"];
 var selectedCells = [];
 var winner = "";
 var winningCells;
@@ -180,17 +182,7 @@ $("#custom2").spectrum({
 
   });
 
-  /////////////////////////////////////
-
-  // var updatePlayer1SelectedIcon = function () {
-  //   $allIconsPlayer1.css("color", colorPlayer1Icons);
-  //   $player1SelectedIcon.css("color", chosenColorPlayer1Icons);
-  // };
-  //
-  // var updatePlayer2SelectedIcon = function () {
-  //   $allIconsPlayer2.css("color", colorPlayer2Icons);
-  //   $player2SelectedIcon.css("color", chosenColorPlayer2Icons);
-  // };
+///////////////////////////////////
 
     $allIconsPlayer1.on("click",function () {
         var $currentIcon = $( this );
@@ -200,11 +192,7 @@ $("#custom2").spectrum({
         $player1SelectedIcon = $currentIcon;
         updatePlayer1Color();
         updatePlayer2Color();
-// debugger
-        // player1SelectedIconData.push({ player1:$player1SelectedIcon.attr("class").split(' ')[1]});
-        // updatePlayer1SelectedIcon();
-        // updatePlayer2SelectedIcon();
-        // debugger
+
     });
 
     $allIconsPlayer2.on("click",function () {
@@ -216,30 +204,7 @@ $("#custom2").spectrum({
         updatePlayer1Color();
         updatePlayer2Color();
 
-        // player2SelectedIconData.push({ player2:$player2SelectedIcon});
-        // updatePlayer1SelectedIcon();
-        // updatePlayer2SelectedIcon();
     });
-    //
-    // var messagePlayer1SelectedIcon;
-    // //to get info from database:
-    // player1SelectedIconData.on("child_added", function(snapshot){
-    //   console.log(snapshot);
-    //   console.log(snapshot.val());
-    //   messagePlayer1SelectedIcon = snapshot.val()
-    //   $player1SelectedIcon = messagePlayer1SelectedIcon.player1;
-    //   // debugger
-    // });
-
-    // var messagePlayer2SelectedIcon;
-    // //to get info from database:
-    // player2SelectedIconData.on("child_added", function(snapshot){
-    //   console.log(snapshot);
-    //   console.log(snapshot.val());
-    //   messagePlayer2SelectedIcon = snapshot.val()
-    //   $player2SelectedIcon = messagePlayer2SelectedIcon.player2;
-    // });
-
 
 ///////////////////////////
 
@@ -256,29 +221,33 @@ $("#custom2").spectrum({
                myErroAlert();
                return;
              }
+            //  var playerTurnsArray = ["It is player 1 turn !"];
+            // counter++;
 
-            counter++;
-
-              if ( counter % 2 !== 0 ){
+              if ( playerTurnsArray[0] === "It is player 1 turn !" ){
                   var $img1 = $("<img>");
                   $img1 = $player1SelectedIcon.clone();
                   $currentCell.append( $img1 );
+                  playerTurnsArray[0] = "It is player 2 turn !";
 
                   cellsPlayer1Data.push({currentCellIndex:$currentCell.index()});
+                  playerTurnsArrayData.push({playerTurnsArray:"It is player 2 turn !"});
                 }
 
 
-              if ( counter % 2 === 0 ){
+              else if ( playerTurnsArray[0] === "It is player 2 turn !" ){
                 var $img2 = $("<img>");
                 $img2 = $player2SelectedIcon.clone();
                 $currentCell.append( $img2 );
 
                 arrayOf1or2[$currentCell.index()] = "2";
+                playerTurnsArray[0] = "It is player 1 turn !";
 
                 cellsPlayer2Data.push({currentCellIndex:$currentCell.index()});
+                playerTurnsArrayData.push({playerTurnsArray:"It is player 1 turn !"});
             }
 
-            console.log("You did " + counter + " valid clicks.");
+            // console.log("You did " + counter + " valid clicks.");
             selectedCells.push($currentCell.index());
             console.log("The following cells have already been selected: " + selectedCells);
 
@@ -426,6 +395,25 @@ $("#custom2").spectrum({
               $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
           });
+
+/////////////////
+
+var messagePlayerTurnsArrayData;
+
+var updatePlayerTurnsArray = function () {
+  playerTurnsArray[0] = messagePlayerTurnsArrayData.playerTurnsArray;
+
+};
+
+//to get info from database:
+playerTurnsArrayData.on("child_added", function(snapshot){
+  console.log(snapshot);
+  console.log(snapshot.val());
+
+  messagePlayerTurnsArrayData = snapshot.val();
+  updatePlayerTurnsArray();
+
+});
 
 //////////////////
 
