@@ -2,35 +2,39 @@ console.log("Thank you Kane");
 
 //Database variables: seperate data with var item = new ... .../items
 
-var playerNamesData = new Firebase('https://wdi14chatdemo.firebaseio.com/players');
+var playerNamesData = new Firebase('https://brilliant-torch-7428.firebaseio.com/playersName');
+var player1ColorData = new Firebase('https://brilliant-torch-7428.firebaseio.com/player1Color');
+var player2ColorData = new Firebase('https://brilliant-torch-7428.firebaseio.com/player2Color');
+var cellsPlayer1Data = new Firebase('https://brilliant-torch-7428.firebaseio.com/cellsPlayer1');
 
-
-
-//other variables
-
+// Modal:
 var thisShouldBeDelayed = function () {
    window.open("#openModal", "_self");
  };
 window.setTimeout(thisShouldBeDelayed, 1000);
 
 
-
+// Icon variables:
 var $allIcons = $(".fa");
 var $allIconsPlayer1 = $(".playerChoice1 i.fa");
 var $allIconsPlayer2 = $(".playerChoice2 i.fa");
-
+// Icon initial color:
 var colorPlayer1Icons = "silver";
 var colorPlayer2Icons = "silver";
+// Icon chosen colors
 var chosenColorPlayer1Icons = "rgba(239, 204, 17, 0.99)";
 var chosenColorPlayer2Icons = "black";
+// Highlight winning cells
 var showWinningCellsColor = "#eee";
-
-
-var $player1SelectedIcon;
-var $player2SelectedIcon;
+// Icons initial color:
 $allIconsPlayer1.css("color", colorPlayer1Icons);
 $allIconsPlayer2.css("color", colorPlayer2Icons);
 
+// Selected icons:
+var $player1SelectedIcon;
+var $player2SelectedIcon;
+
+// jQuery variables:
 var $allCells = $(".cell");
 var $newGameButtonAction = $(".newGameButton");
 var $letsPlayButtonAction = $(".letsPlayButton");
@@ -66,7 +70,6 @@ $(".player2Name").keyup(function(){
 });
 
 $letsPlayButtonAction.on("click",function () {
-
   $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
   $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
 
@@ -86,25 +89,22 @@ var updateNames = function () {
   $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 };
 
-var message;
+var messagePlayerNames;
 //to get info from database:
 playerNamesData.on("child_added", function(snapshot){
   console.log(snapshot);
   console.log(snapshot.val());
-
-  message = snapshot.val()
-
-  player1NameFromInput = message.player1;
-  player2NameFromInput = message.player2;
-
+  messagePlayerNames = snapshot.val()
+  player1NameFromInput = messagePlayerNames.player1;
+  player2NameFromInput = messagePlayerNames.player2;
   updateNames();
+});
 
+$player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+$player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
 
-})
-;
-
-
-
+$player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+$player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
 
 $("#custom1").spectrum({
@@ -123,6 +123,8 @@ $("#custom2").spectrum({
     var a1 = Math.round($("#custom1").spectrum("get")._a).toString();
     chosenColorPlayer1Icons = "rgba(" + r1 + ", " + g1 + ", " + b1 + ", " + a1 + ")";
 
+    player1ColorData.push({ player1:chosenColorPlayer1Icons});
+    // updatePlayer1Color();
   });
 
   $(".sp-val").last().on("click", function() {
@@ -132,13 +134,47 @@ $("#custom2").spectrum({
     var a2 = Math.round($("#custom2").spectrum("get")._a).toString();
     chosenColorPlayer2Icons = "rgba(" + r2 + ", " + g2 + ", " + b2 + ", " + a2 + ")";
 
+    player2ColorData.push({ player2:chosenColorPlayer2Icons});
+    // updatePlayer2Color();
   });
 
-$player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
-$player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
 
-$player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
-$player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+  var chosenColorPlayer1IconsString = "background-color: " + chosenColorPlayer1Icons;
+  var updatePlayer1Color = function () {
+      $(".sp-preview-inner").first().attr('style', chosenColorPlayer1IconsString);
+      // $(".sp-preview-inner").first().attr('style', color)
+      // var color = "background-color: rgb(140, 35, 49)"
+  };
+
+  var messagePlayer1Color;
+  //to get info from database:
+  player1ColorData.on("child_added", function(snapshot){
+    console.log(snapshot);
+    console.log(snapshot.val());
+    messagePlayer1Color = snapshot.val()
+    chosenColorPlayer1Icons = messagePlayer1Color.player1;
+    chosenColorPlayer1IconsString = "background-color: " + chosenColorPlayer1Icons;
+    // updatePlayer1Color();
+
+  });
+  var chosenColorPlayer2IconsString = "background-color: " + chosenColorPlayer2Icons;
+  var updatePlayer2Color = function () {
+
+      // $spPreviewInner2.css("background-color", chosenColorPlayer2Icons);
+      $(".sp-preview-inner").last().attr('style', chosenColorPlayer2IconsString);
+  };
+
+  var messagePlayer2Color;
+  //to get info from database:
+  player2ColorData.on("child_added", function(snapshot){
+    console.log(snapshot);
+    console.log(snapshot.val());
+    messagePlayer2Color = snapshot.val()
+    chosenColorPlayer2Icons = messagePlayer2Color.player2;
+    chosenColorPlayer2IconsString = "background-color: " + chosenColorPlayer2Icons;
+    // updatePlayer2Color();
+
+  });
 
     $allIconsPlayer1.on("click",function () {
         var $currentIcon = $( this );
@@ -146,6 +182,8 @@ $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
         $currentIcon.css("color", chosenColorPlayer1Icons);
         $player1SelectedIcon = $currentIcon;
+        updatePlayer1Color();
+        updatePlayer2Color();
     });
 
     $allIconsPlayer2.on("click",function () {
@@ -154,6 +192,8 @@ $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
         $currentIcon.css("color", chosenColorPlayer2Icons);
         $player2SelectedIcon = $currentIcon;
+        updatePlayer1Color();
+        updatePlayer2Color();
     });
 
 
@@ -180,6 +220,8 @@ $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
                   $currentCell.append( $img1 );
 
                   arrayOf1or2[$currentCell.index()] = "1";
+
+                  cellsPlayer1Data.push({ image1:$img1, currentCellIndex:$currentCell.index()});
                 }
 
 
@@ -337,6 +379,27 @@ $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
               $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
               $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+
+          });
+
+// var cellsPlayer1Data = new Firebase('https://brilliant-torch-7428.firebaseio.com/cellsPlayer1');
+  //cellsPlayer1Data.push({ image1:$img1, currentCellIndex:$currentCell.index()});
+  //$currentCell.append( $img1 );
+
+  var messageCellsPlayer1Data;
+
+var updateCells = function () {
+  // debugger;
+  $allCells.eq(messageCellsPlayer1Data.currentCellIndex).append(messageCellsPlayer1Data.image1);
+  arrayOf1or2[messageCellsPlayer1Data.currentCellIndex] = "1";
+};
+
+          //to get info from database:
+          cellsPlayer1Data.on("child_added", function(snapshot){
+            console.log(snapshot);
+            console.log(snapshot.val());
+            messageCellsPlayer1Data = snapshot.val();
+            updateCells();
 
           });
 
