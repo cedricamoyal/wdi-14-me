@@ -12,7 +12,7 @@ var player2SelectedIconData = new Firebase('https://brilliant-torch-7428.firebas
 var playerTurnsArrayData = new Firebase('https://brilliant-torch-7428.firebaseio.com/playerTurnsArrayData');
 var selectedIconPlayer1ArrayData = new Firebase('https://brilliant-torch-7428.firebaseio.com/selectedIconPlayer1ArrayData');
 var selectedIconPlayer2ArrayData = new Firebase('https://brilliant-torch-7428.firebaseio.com/selectedIconPlayer2ArrayData');
-
+var playerWinsData = new Firebase('https://brilliant-torch-7428.firebaseio.com/playerWinsData');
 // Modal:
 var thisShouldBeDelayed = function () {
    window.open("#openModal", "_self");
@@ -78,18 +78,6 @@ $(".player2Name").keyup(function(){
    player2NameFromInput = $(".player2Name").val();
 });
 
-$letsPlayButtonAction.on("click",function () {
-  $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
-  $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
-
-  $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
-  $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
-
-  // send info to data base:
-  playerNamesData.push({ player1:player1NameFromInput, player2:player2NameFromInput});
-
-});
-
 var updateNames = function () {
   $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
   $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
@@ -97,6 +85,20 @@ var updateNames = function () {
   $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
   $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 };
+
+$letsPlayButtonAction.on("click",function () {
+  // $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+  // $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+  //
+  // $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+  // $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+  updateNames();
+  // send info to data base:
+  playerNamesData.push({ player1:player1NameFromInput, player2:player2NameFromInput});
+
+});
+
+
 
 var messagePlayerNames;
 //to get info from database:
@@ -341,12 +343,12 @@ var updatePlayer2Color = function () {
             console.log("The following cells have already been selected: " + selectedCells);
 
 
-
-              $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
-              $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
-
-              $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
-              $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+            // updateNames();
+              // $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+              // $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+              //
+              // $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+              // $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
           });
 
@@ -492,8 +494,31 @@ var whoIsTheWinners = function () {
               { winner = "tie";
                 tieAlert(); }
 
+              updateNames();
+
+          playerWinsData.push({player1Wins:thePlayer1Wins, player2Wins:thePlayer2Wins });
+
+};
+////////////////
+// var playerWinsData
+
+var messagePlayerWins;
+
+var updatePlayerWins = function () {
+  thePlayer1Wins = messagePlayerWins.player1Wins;
+  thePlayer2Wins = messagePlayerWins.player2Wins;
+
 };
 
+//to get info from database:
+playerWinsData.on("child_added", function(snapshot){
+  console.log(snapshot);
+  console.log(snapshot.val());
+
+  messagePlayerWins = snapshot.val();
+  updatePlayerWins();
+
+});
 
 
 /////////////////
