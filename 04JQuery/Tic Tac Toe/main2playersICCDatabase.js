@@ -125,6 +125,20 @@ $("#custom2").spectrum({
     color: chosenColorPlayer2Icons
 });
 
+var chosenColorPlayer1IconsString = "background-color: " + chosenColorPlayer1Icons;
+var updatePlayer1Color = function () {
+    $(".sp-preview-inner").first().attr('style', chosenColorPlayer1IconsString);
+    $player1SelectedIcon.css("color", chosenColorPlayer1Icons);
+
+};
+
+var chosenColorPlayer2IconsString = "background-color: " + chosenColorPlayer2Icons;
+var updatePlayer2Color = function () {
+
+    // $spPreviewInner2.css("background-color", chosenColorPlayer2Icons);
+    $(".sp-preview-inner").last().attr('style', chosenColorPlayer2IconsString);
+    $player2SelectedIcon.css("color", chosenColorPlayer2Icons);
+};
 
   $(".sp-val").first().on("click", function() {
     var r1 = Math.round($("#custom1").spectrum("get")._r).toString();
@@ -134,7 +148,8 @@ $("#custom2").spectrum({
     chosenColorPlayer1Icons = "rgba(" + r1 + ", " + g1 + ", " + b1 + ", " + a1 + ")";
 
     player1ColorData.push({ player1:chosenColorPlayer1Icons});
-    // updatePlayer1Color();
+    // window.setTimeout(updatePlayer1Color, 2000);
+
   });
 
   $(".sp-val").last().on("click", function() {
@@ -145,16 +160,9 @@ $("#custom2").spectrum({
     chosenColorPlayer2Icons = "rgba(" + r2 + ", " + g2 + ", " + b2 + ", " + a2 + ")";
 
     player2ColorData.push({ player2:chosenColorPlayer2Icons});
-    // updatePlayer2Color();
+    // window.setTimeout(updatePlayer2Color, 2000);
   });
 
-
-  var chosenColorPlayer1IconsString = "background-color: " + chosenColorPlayer1Icons;
-  var updatePlayer1Color = function () {
-      $(".sp-preview-inner").first().attr('style', chosenColorPlayer1IconsString);
-      // $(".sp-preview-inner").first().attr('style', color)
-      // var color = "background-color: rgb(140, 35, 49)"
-  };
 
   var messagePlayer1Color;
   //to get info from database:
@@ -164,15 +172,10 @@ $("#custom2").spectrum({
     messagePlayer1Color = snapshot.val()
     chosenColorPlayer1Icons = messagePlayer1Color.player1;
     chosenColorPlayer1IconsString = "background-color: " + chosenColorPlayer1Icons;
-    // updatePlayer1Color();
+    window.setTimeout(updatePlayer1Color, 500);
 
   });
-  var chosenColorPlayer2IconsString = "background-color: " + chosenColorPlayer2Icons;
-  var updatePlayer2Color = function () {
 
-      // $spPreviewInner2.css("background-color", chosenColorPlayer2Icons);
-      $(".sp-preview-inner").last().attr('style', chosenColorPlayer2IconsString);
-  };
 
   var messagePlayer2Color;
   //to get info from database:
@@ -182,7 +185,7 @@ $("#custom2").spectrum({
     messagePlayer2Color = snapshot.val()
     chosenColorPlayer2Icons = messagePlayer2Color.player2;
     chosenColorPlayer2IconsString = "background-color: " + chosenColorPlayer2Icons;
-    // updatePlayer2Color();
+    window.setTimeout(updatePlayer2Color, 500);
 
   });
 
@@ -214,8 +217,8 @@ $("#custom2").spectrum({
         $currentIcon.css("color", chosenColorPlayer1Icons);
         $player1SelectedIcon = $currentIcon;
 
-        updatePlayer1Color();
-        updatePlayer2Color();
+        // updatePlayer1Color();
+        // updatePlayer2Color();
 
         selectedIconPlayer1ArrayData.push({ player1SelectedIndex:$currentIcon.index()-3, player1SelectedString:$currentIcon.attr("class").split(' ')[1] });
     });
@@ -256,8 +259,8 @@ $("#custom2").spectrum({
 
         $currentIcon.css("color", chosenColorPlayer2Icons);
         $player2SelectedIcon = $currentIcon;
-        updatePlayer1Color();
-        updatePlayer2Color();
+        // updatePlayer1Color();
+        // updatePlayer2Color();
 
         selectedIconPlayer2ArrayData.push({ player2SelectedIndex:$currentIcon.index()-1, player2SelectedString:$currentIcon.attr("class").split(' ')[1] });
 
@@ -336,6 +339,21 @@ $("#custom2").spectrum({
             // console.log("You did " + counter + " valid clicks.");
             selectedCells.push($currentCell.index());
             console.log("The following cells have already been selected: " + selectedCells);
+
+
+
+              $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
+              $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+
+              $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
+              $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
+
+          });
+
+///////////////
+
+var whoIsTheWinners = function () {
+
 
 // For the player 1 to win:
 
@@ -474,13 +492,9 @@ $("#custom2").spectrum({
               { winner = "tie";
                 tieAlert(); }
 
-              $player1WinsAction.html(player1NameFromInput + "'s" + " points: " + thePlayer1Wins );
-              $player2WinsAction.html(player2NameFromInput + "'s" + " points: " + thePlayer2Wins );
+};
 
-              $player1TitleAction.html(player1NameFromInput + "'s" + " icons: ");
-              $player2TitleAction.html(player2NameFromInput + "'s" + " icons: ");
 
-          });
 
 /////////////////
 
@@ -498,6 +512,7 @@ playerTurnsArrayData.on("child_added", function(snapshot){
 
   messagePlayerTurnsArrayData = snapshot.val();
   updatePlayerTurnsArray();
+  whoIsTheWinners();
 
 });
 
