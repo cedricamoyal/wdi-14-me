@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cars: The Movie</title>
+  <!-- anything in the public folder can be access with just a slash: "/....." -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <nav>
+    <!-- We rely on these routes being defined in main.rb -->
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/calc">Calculate</a>
+  </nav>
+
+<!-- Get text from the other .erb doc -->
+  <%= yield %>
+
+</body>
+</html>

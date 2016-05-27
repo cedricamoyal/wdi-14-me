@@ -1,0 +1,7 @@
+<% @all_habitats.each do |habitat| %>
+  <a href="/habitats/<%= habitat.id %>">
+    <p>Habitat landscape: <%= habitat.landscape %></p>
+    <p>Habitat climat: <%= habitat.climat %></p>
+  </a>
+  <hr>
+<% end %>

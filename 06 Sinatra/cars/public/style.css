@@ -1,0 +1,12 @@
+body {
+  background-color: grey;
+}
+
+nav {
+  height: 80px;
+  background-color: white;
+}
+
+a {
+  color: purple;
+}

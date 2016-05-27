@@ -1,0 +1,32 @@
+<%= form_for @country do |f| %>
+
+<!-- t.text :name
+t.text :surface
+t.text :population
+t.text :language
+t.text :flag -->
+
+  <p>
+    <%= f.label :name, :class => "labels" %>
+    <%= f.text_field :name, :required => true, :class => "inputs" %>
+  </p>
+  <p>
+    <%= f.label :surface, :class => "labels" %>
+    <%= f.text_field :surface, :required => true, :class => "inputs" %>
+  </p>
+  <p>
+    <%= f.label :population, :class => "labels" %>
+    <%= f.text_field :population, :required => true, :class => "inputs" %>
+  </p>
+  <p>
+    <%= f.label :language, :class => "labels" %>
+    <%= f.text_field :language, :required => true, :class => "inputs" %>
+  </p>
+  <p>
+    <%= f.label :flag, :class => "labels" %>
+    <%= f.url_field :flag, :required => true, :class => "inputs" %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>

@@ -1,0 +1,44 @@
+<!-- <hr>
+<h3>You will see all the countries:</h3>
+<hr> -->
+
+<%= @all_countries %>
+<hr>
+
+<% @all_countries.each do |country| %>
+
+<div class="countryBox">
+
+  <hr>
+  <div class="countryNameBox">
+        <h2><%= country["name"] %> for <%= country["duration"] %></h2>
+  </div>
+  <hr>
+  <div class="countryVisitsBox">
+        <h4><%= country["visits"] %></h4>
+  </div>
+
+  <div class="countryImageBox">
+    <div class="photoBox">
+          <a href="/countries/<%= country["id"] %>">
+          <img src="<%= country["photo"] %>"></a>
+    </div>
+    <div class="flagBox">
+          <a href="/countries/<%= country["id"] %>">
+          <img src="<%= country["flag"] %>"></a>
+    </div>
+
+  </div>
+  <br>
+
+
+</div>
+
+<% end %>
+
+
+<!-- @name = params["name"]
+@duration = params["duration"]
+@visits = params["visits"]
+@flag = params["flag"]
+@photo = params["photo"] -->

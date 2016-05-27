@@ -1,0 +1,22 @@
+<h2><%= @visit.name %></h2>
+
+<%= image_tag( @visit.image, :class => 'feature') %>
+
+
+<% if @visit.country %>
+      <!-- link_to( written words, url ) -->
+      <p>Country: <%= link_to( @visit.country.name, @visit.country ) %></p>
+<% end %>
+
+<p>Type: <%= @visit.type %></p>
+<p>Duration: <%= @visit.duration %></p>
+
+<div class="controls">
+  <%= link_to "Edit Visit", edit_visit_path( @visit ) %>
+  <%= link_to "Delete Visit", @visit, :method => :delete, :data => { :confirm => 'Are you sure?'} %>
+</div>
+
+<!-- t.text :name
+t.text :type
+t.text :duration
+t.text :image -->

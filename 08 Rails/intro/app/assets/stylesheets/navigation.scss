@@ -1,0 +1,21 @@
+nav {
+  text-align: center;
+  background-color: grey;
+  height: 80px;
+  line-height: 80px; //to vertically center
+}
+
+nav a {
+  padding: 0 5px;
+  text-decoration: none;
+  color: green;
+  -webkit-transition: color 1s;
+  -moz-transition: color 1s;
+  -ms-transition: color 1s;
+  -o-transition: color 1s;
+  transition: color 1s;
+}
+
+nav a:hover {
+  color: hotpink;
+}

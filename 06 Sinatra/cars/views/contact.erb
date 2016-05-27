@@ -1,0 +1,21 @@
+<hr>
+<h1>This is our contact page</h1>
+
+<!-- This will not print -->
+<% 2 + 2 %>
+<!-- This will print -->
+<%= 2 + 2 %>
+
+<% emails = ["gigi@ga.co", "wolf@ga.co", "jack.jeffress@ga.co", "kane.mott@ga.co", "sherif.gamal@ga.co"] %>
+<%= emails %>
+
+<!-- <%....%> needed for each line of ruby code -->
+<ul>
+  <% emails.each do |email| %>
+    <li>
+      <%= email %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>

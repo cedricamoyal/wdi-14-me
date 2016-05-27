@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gamesonrails</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<h1>This is from application.html.erb</h1>
+
+<nav>
+  <%= link_to "All games", "/games" %>
+  <%= link_to "Magic 8 ball", "/games/magic" %>
+  <%= link_to "Secret number", "/games/secret" %>
+  <%= link_to "RPS", "/games/rps" %>
+</nav>
+
+<%= yield %>
+
+</body>
+</html>

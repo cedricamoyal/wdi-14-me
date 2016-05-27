@@ -1,0 +1,6 @@
+<h2>All the visits planned on the trip:</h2>
+
+<% @visits.each do |visit| %>
+    <%#= link_to(image_tag( visit.image, :class => 'thumbnail'), visit_path(visit)) %>
+    <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
+<% end %>

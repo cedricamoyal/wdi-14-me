@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<!--
+
+"show all the users" = /users
+"view a profile" = /users/1
+"edit a user" = /users/1/edit
+"delete an account" = /users/1/delete
+"create an account" = /users/new
+
+ -->
+
+
+  <nav>
+    <%= link_to "All users", users_path %> |
+    <% if @current_user %>
+        <%= link_to "View profile", @current_user %> |
+        <%= link_to "Edit profile", edit_user_path(@current_user) %> |
+        <%= link_to "Delete account", user_path(@current_user), :method => :delete %> |
+        <%= link_to "Logout", logout_path, :method => :delete %> 
+    <% else %>
+        <%= link_to "Create account", new_user_path %> |
+        <%= link_to "Login", login_path %>
+    <% end %>
+  </nav>
+
+  <% if @current_user %>
+    <p>Your email is <%= @current_user.email %></p>
+  <% end %>
+
+  <% if flash[:success] %>
+    <p><%= flash[:success] %></p>
+  <% end %>
+
+  <% if flash[:error] %>
+    <p><%= flash[:error] %></p>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+</html>

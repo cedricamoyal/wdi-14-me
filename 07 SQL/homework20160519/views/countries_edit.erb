@@ -1,0 +1,43 @@
+
+<hr>
+<h3>Here you can update a country of our 2022 World Tour:</h3>
+
+<form method="POST" action="/countries/<%= @country["id"] %>">
+
+  <p>
+    <label class="label">What country: </label>
+    <input type="text" name="name" value="<%= @country["name"] %>">
+  </p>
+
+  <p>
+    <label class="label">Duration of the trip: </label>
+    <input type="text" name="duration" value="<%= @country["duration"] %>">
+  </p>
+
+  <p>
+    <label class="label">Key visits: </label>
+    <input type="text" name="visits" value="<%= @country["visits"] %>">
+  </p>
+
+  <p>
+    <label class="label">Flag: </label>
+    <input type="text" name="flag" value="<%= @country["flag"] %>">
+  </p>
+
+  <p>
+    <label class="label">A cool image: </label>
+    <input type="text" name="photo" value="<%= @country["photo"] %>">
+  </p>
+
+  <input class="submit" type="submit" value="Update this trip">
+</form>
+
+<!--
+# CREATE TABLE countries (
+#   id INTEGER PRIMARY KEY AUTOINCREMENT,
+#   name TEXT,
+#   duration TEXT,
+#   visits TEXT,
+#   flag TEXT,
+#   photo TEXT
+# ); -->

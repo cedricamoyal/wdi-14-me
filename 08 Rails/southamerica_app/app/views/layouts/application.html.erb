@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SouthamericaApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <h1>This is from application.html.erb</h1>
+
+  <nav>
+    <%= link_to "All the countries", "/countries", :class => "links" %>
+    <%= link_to "Create a new country", "/countries/new", :class => "links" %>
+
+    <%= link_to "All the visits", "/visits", :class => "links" %>
+    <%= link_to "Create a new visit", "/visits/new", :class => "links" %>
+  </nav>
+
+  <hr>
+
+<%= yield %>
+
+  <br>
+   <hr>
+
+</body>
+</html>

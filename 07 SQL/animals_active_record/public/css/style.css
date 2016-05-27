@@ -1,0 +1,19 @@
+
+body {
+  font-family: "Comic Sans", fantasy;
+  text-align: center;
+  color: blue;
+}
+
+p {
+  color: pink;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.photos {
+  width: 400px;
+}

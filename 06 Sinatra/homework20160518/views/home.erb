@@ -1,0 +1,15 @@
+<hr>
+
+<!-- once the form is submitted, it will make a GET request to the URL found in the action attribute -->
+    <form action="/search" method="GET">
+
+      <p>
+        <label>What movie do you want?</label>
+        <!-- The name attribute specifies how this value will be stored in the parameters part of the URL and in the params hash in main.rb  -->
+        <input type="text" name="movie_name">
+      </p>
+    <!-- If we click this button it will submit the form making a GET request to /calculate, see main.rb -->
+      <input type="submit" value="Show results">
+
+    </form>
+<hr>

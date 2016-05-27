@@ -1,0 +1,24 @@
+<h4>This is the show.html.erb page</h4>
+
+<h2>
+  The planet name is: <%= @planet.name %>
+</h2>
+
+<% if @planet.image %>
+<p><img src="<%= @planet.image %>" alt=""></p>
+<% end %>
+
+<p>
+  Orbit: <%= @planet.orbit %>
+</p>
+<p>
+  Moons: <%= @planet.moons %>
+</p>
+<p>
+  Diameter: <%= @planet.diameter %>
+</p>
+
+<p>
+    <%= link_to( "Edit #{@planet.name}", "/planets/#{@planet.id}/edit") %>
+    <%= button_to( "Destroy #{@planet.name}", "/planets/#{@planet.id}/delete", :method => :delete) %>
+</p>

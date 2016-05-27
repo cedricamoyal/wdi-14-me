@@ -1,0 +1,42 @@
+<hr>
+<h3>Here you can add a new country to our 2022 World Tour:</h3>
+
+<form method="POST" action="/countries">
+
+  <p>
+    <label class="label">What country: </label>
+    <input type="text" name="name">
+  </p>
+
+  <p>
+    <label class="label">Duration of the trip: </label>
+    <input type="text" name="duration">
+  </p>
+
+  <p>
+    <label class="label">Key visits: </label>
+    <input type="text" name="visits">
+  </p>
+
+  <p>
+    <label class="label">Flag: </label>
+    <input type="text" name="flag">
+  </p>
+
+  <p>
+    <label class="label">A cool image: </label>
+    <input type="text" name="photo">
+  </p>
+
+  <input class="submit" type="submit" value="Add a trip to the tour">
+</form>
+
+<!--
+# CREATE TABLE countries (
+#   id INTEGER PRIMARY KEY AUTOINCREMENT,
+#   name TEXT,
+#   duration TEXT,
+#   visits TEXT,
+#   flag TEXT,
+#   photo TEXT
+# ); -->

@@ -1,0 +1,28 @@
+<h2><%= @country.name %></h2>
+
+<div class="showmain">
+<%= link_to(image_tag( @country.flag, :class => 'feature'), @country) %>
+<ul>
+    <li>Name: <%= link_to @country.name, "/countries/#{@country.id}", :class => "links" %></li>
+    <li>Surface: <%= @country.surface %></li>
+    <li>Population: <%= @country.population %></li>
+    <li>Language: <%= @country.language %></li>
+</ul>
+</div>
+
+<div class="visittitle">
+<h2>Visits:</h2>
+</div>
+
+<% @country.visits.each do |visit| %>
+  <div class="visits">
+    <h3><%= visit.name %>:</h3>
+    <p><%= link_to( image_tag(visit.image, :class => 'thumbnail'), visit ) %></p>
+  </div>
+<% end %>
+
+
+<div class="controls">
+  <%= link_to "Edit Country", edit_country_path( @country ), :class => "links" %>
+  <%= link_to "Delete Country", @country, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %>
+</div>

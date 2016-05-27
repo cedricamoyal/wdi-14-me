@@ -1,0 +1,68 @@
+<!-- <h3>This should show one country of the trip</h3> -->
+
+<!-- <%= @country %> -->
+<!-- <h4>
+  <%= @country["name"] %>
+</h4>
+<h4>
+  <%= @country["duration"] %>
+</h4>
+<h4>
+  <%= @country["visits"] %>
+</h4>
+
+<p>
+  <a href="/countries/<%= @country["id"] %>">
+  <img src="<%= @country["photo"] %>"></a>
+</p>
+
+<p>
+  <a href="/countries/<%= @country["id"] %>">
+  <img src="<%= @country["flag"] %>"></a>
+</p> -->
+<!-- /////////////////////////////// -->
+<div class="countryBox">
+
+  <hr>
+  <div class="countryNameBox">
+        <h2><%= @country["name"] %> for <%= @country["duration"] %></h2>
+  </div>
+  <hr>
+  <div class="countryVisitsBox">
+        <h4><%= @country["visits"] %></h4>
+  </div>
+
+  <div class="countryImageBox">
+    <div class="photoBox">
+          <a href="/countries/<%= @country["id"] %>">
+          <img src="<%= @country["photo"] %>"></a>
+    </div>
+    <div class="flagBox">
+          <a href="/countries/<%= @country["id"] %>">
+          <img src="<%= @country["flag"] %>"></a>
+    </div>
+
+  </div>
+  <br>
+  <hr>
+
+</div>
+
+<!--  ///////////////////////////// -->
+
+<p>
+  <a href="/countries/<%= @country["id"] %>/edit">
+     Update this country
+  </a>
+</p>
+
+<p>
+  <a href="/countries/<%= @country["id"] %>/delete">
+     Delete this country
+  </a>
+</p>
+
+<p>
+  <a href="/countries">
+     See all the countries</a>
+</p>

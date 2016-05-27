@@ -1,0 +1,25 @@
+<h2>This should show all the countries where I wish to go:</h2>
+
+<ul>
+  <% @countries.each do |country| %>
+    <div class="countries">
+    <li>
+          <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+          <ul>
+              <li>Name: <%= link_to country.name, "/countries/#{country.id}" %></li>
+              <li>Surface: <%= country.surface %></li>
+              <li>Population: <%= country.population %></li>
+              <li>Language: <%= country.language %></li>
+          </ul>
+    </li>
+    </div>
+  <% end %>
+</ul>
+
+
+
+<!-- t.text :name
+t.text :surface
+t.text :population
+t.text :language
+t.text :flag -->

@@ -1,0 +1,20 @@
+<hr>
+
+<!-- once the form is submitted, it will make a GET request to the URL found in the action attribute -->
+    <form action="/calculate" method="GET">
+
+      <p>
+        <label>What is the first number?</label>
+        <!-- The name attribute specifies how this value will be stored in the parameters part of the URL and in the params hash in main.rb  -->
+        <input type="number" name="first_number">
+      </p>
+
+      <p>
+        <label>What is the second number?</label>
+        <input type="number" name="second_number">
+      </p>
+    <!-- If we click this button it will submit the form making a GET request to /calculate, see main.rb -->
+      <input type="submit" value="Show results">
+
+    </form>
+<hr>

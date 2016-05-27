@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SouthamericaApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <h1>This is from application.html.erb</h1>
+
+  <nav>
+    <%= link_to "All the countries", "/countries", :class => "links" %>
+    <%= link_to "Create a new country", "/countries/new", :class => "links" %>
+
+    <%= link_to "All the visits", "/visits", :class => "links" %>
+    <%= link_to "Create a new visit", "/visits/new", :class => "links" %>
+  </nav>
+
+  <hr>
+
+<%= yield %>
+
+  <br>
+   <hr>
+
+   <script src="/assets/zepto.min.js"></script>
+   <script src="/assets/zepto.dragswap.js"></script>
+   <script>
+   $(function() {
+
+    //      $('.sortable_exclude_dynamic').dragswap({
+    //          element : 'li',
+    //    dropAnimation: true,
+    //          exclude : ['.correct', '.empty']
+    //  });
+     //
+    //      $('.sortable_exclude_dynamic').append(
+    //          '<li id="item1">Item 1</li>'
+    //    +'<li id="item2">Item 2</li>'
+    //    +'<li id="item3" class="correct">Item 3</li>'
+    //          +'<li id="item4">Item 4</li>'
+    //    +'<li id="item5" class="empty"></li>'
+    //    +'<li id="item6" class="correct">Item 6</li>'
+    //    +'<li id="item7" class="correct">Item 7</li>');
+     //
+    //      $('.sortable').dragswap({
+    //          element : 'li',
+    //    dropAnimation: true
+    //  });
+
+     $('.funcs').dragswap({
+       dropAnimation: false,
+       dropComplete: function() {
+         var sortArray = $('.funcs').dragswap('toArray');
+         $('#arrayResults').html('['+sortArray.join(',')+']');
+         var sortJSON = $('.funcs').dragswap('toJSON');
+         $('#jsonResults').html(sortJSON);
+       }
+     });
+   });
+   </script>
+
+</body>
+</html>

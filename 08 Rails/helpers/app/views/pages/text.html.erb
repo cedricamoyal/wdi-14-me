@@ -1,0 +1,16 @@
+<h2>These are using text helper:</h2>
+
+<p>I have <%= pluralize( @friends, "friend") %></p>
+<p>I have <%= pluralize( @enemies, "enemy") %></p>
+
+<p>I have <%= pluralize( 7, "virus") %></p>
+
+<p><%= truncate( @fairytale, :length => 50)%></p>
+
+<ul>
+    <% @numbers.each do |n| %>
+        <li style="background-color: <%= cycle( "hotpink", "green", "grey" ) %>">
+            <%= n %>
+        </li>
+        <% end %>
+</ul>
