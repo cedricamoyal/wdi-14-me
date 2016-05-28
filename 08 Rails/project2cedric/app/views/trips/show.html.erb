@@ -1,0 +1,12 @@
+<h2><%= @trip.name %></h2>
+
+<h4>Start date: <%= @trip.startDate %></h4>
+<h4>Description: <%= @trip.description %></h4>
+
+<h4>Trip ID: <%= @trip.id %></h4>
+<h4>trip.user_id: <%= @trip.user_id %></h4>
+
+<div class="controls">
+  <%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %>
+  <%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %>
+</div>

@@ -1,0 +1,31 @@
+<!-- # t.text :name
+# t.text :description
+# t.date :startDate
+# t.integer :user_id -->
+
+<%= form_for @trip do |f| %>
+
+  <p>
+    <%= f.label :name, :class => "labels" %>
+    <%= f.text_field :name, :required => true, :class => "inputs" %>
+  </p>
+
+  <p>
+    <%= f.label :description, :class => "labels" %>
+    <%= f.text_field :description, :required => true, :class => "inputs" %>
+  </p>
+
+  <p>
+    <%= f.label :startDate, :class => "labels" %>
+    <%= f.text_field :startDate, :required => true, :class => "inputs" %>
+  </p>
+
+
+  <p>
+    <%= f.label :user_id, :class => "labels" %>
+    <%= f.text_field :user_id, :required => true, :class => "inputs", :value => "#{@current_user.id}" %>
+  </p>
+
+  <%= f.submit %>
+
+<% end %>

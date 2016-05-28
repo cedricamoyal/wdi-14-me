@@ -4,5 +4,10 @@
 <p> Email: <%= @user.email %> </p>
 <p> Password digest: <%= @user.password_digest %> </p>
 
+<%= link_to( "Check your trips", trips_path( @user)) %>
+
+<br>
+<br>
+
 <%= link_to( "Edit user", edit_user_path( @user)) %>
 <%= link_to( "Delete user", user_path( @user), :method => :delete) %>

@@ -1,0 +1,5 @@
+<h2>Edit <%= @trip.name %></h2>
+
+<% if @current_user %>
+    <%= render :partial => 'form' %>
+<% end %>
