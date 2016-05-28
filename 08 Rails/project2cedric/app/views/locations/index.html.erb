@@ -1,0 +1,18 @@
+<h2>This should show all the locations/continents:</h2>
+
+<ul>
+  <% @locations.each do |location| %>
+    <li>
+
+              <h4>Location name: <%= link_to location.name, "/locations/#{location.id}" %></h4>
+              <h4>Population: <%= location.population %></h4>
+              <h4>Area: <%= location.area %></h4>
+              <h4>Location ID: <%= location.id %></h4>
+              <hr>
+    </li>
+  <% end %>
+</ul>
+
+<!-- # t.text :name
+# t.text :population
+# t.text :area -->

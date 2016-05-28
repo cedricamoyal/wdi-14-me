@@ -1,0 +1,8 @@
+<h2><%= @location.name %></h2>
+
+<h4>Population: <%= @location.population %></h4>
+<h4>Area: <%= @location.area %></h4>
+
+<h4>Location ID: <%= @location.id %></h4>
+
+  <%= link_to "See all locations", locations_path, :class => "links" %>

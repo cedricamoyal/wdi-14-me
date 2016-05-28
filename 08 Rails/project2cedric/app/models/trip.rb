@@ -1,3 +1,5 @@
+# project2cedric $ rails generate model Trip --skip
+
 # == Schema Information
 #
 # Table name: trips
