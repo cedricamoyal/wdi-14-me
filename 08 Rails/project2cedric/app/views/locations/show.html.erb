@@ -1,5 +1,9 @@
 <h2><%= @location.name %></h2>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
+
 <h4>Population: <%= @location.population %></h4>
 <h4>Area: <%= @location.area %></h4>
 
@@ -8,10 +12,14 @@
 <h2>Countries in that part of the world:</h2>
 
 <% @location.countries.each do |country| %>
+    <br>
     <h3><%= country.name %>:</h3>
     <p><%= link_to( image_tag(country.flag, :class => 'thumbnail'), country ) %></p>
+    <br>
+    <hr>
 <% end %>
 
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
 <%= link_to "See all the countries", countries_path, :class => "links" %>
 <%= link_to "See all the locations", locations_path, :class => "links" %>

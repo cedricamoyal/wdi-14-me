@@ -1,19 +1,29 @@
 <h2>This should show all the visits:</h2>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
+
 <ul>
   <% @visits.each do |visit| %>
 
+    <br>
     <li>
           <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
+          <br>
+          <br>
           <ul>
               <li>Name: <%= link_to visit.name, "/visits/#{visit.id}" %></li>
               <li>Country: <%= link_to visit.country.name, "/countries/#{visit.country.id}" %></li>
               <li>Descrition: <%= visit.description %></li>
           </ul>
     </li>
+    <br>
+    <hr>
 
   <% end %>
 </ul>
 
-  <%= link_to "See all the countries", countries_path, :class => "links" %>
-  <%= link_to "See all locations", locations_path, :class => "links" %>
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>

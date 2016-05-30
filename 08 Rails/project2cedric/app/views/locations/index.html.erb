@@ -1,5 +1,9 @@
 <h2>This should show all the locations/continents:</h2>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
+
 <ul>
   <% @locations.each do |location| %>
     <li>
@@ -13,8 +17,9 @@
   <% end %>
 </ul>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
 <%= link_to "See all the countries", countries_path, :class => "links" %>
-
+<%= link_to "See all the locations", locations_path, :class => "links" %>
 <!-- # t.text :name
 # t.text :population
 # t.text :area -->

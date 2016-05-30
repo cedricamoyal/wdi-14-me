@@ -20,4 +20,5 @@
 class Country < ActiveRecord::Base
   belongs_to :location
   has_many :visits
+  has_many :steps, :through => :visits
 end

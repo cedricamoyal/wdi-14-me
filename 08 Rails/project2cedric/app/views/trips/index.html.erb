@@ -5,7 +5,7 @@
     <li>
               <h4>Current user name: <%= @current_user.name %></h4>
               <h4>Trip name: <%= link_to trip.name, "/trips/#{trip.id}" %></h4>
-              <h4>Start date: <%= trip.startDate %></h4>
+              <h4>Start date: <%= trip.startDate.strftime( "%A, %e %B, %Y") %></h4>
               <h4>Description: <%= trip.description %></h4>
               <h4>Trip ID: <%= trip.id %></h4>
               <h4>trip.user_id: <%= trip.user_id %></h4>
@@ -26,7 +26,7 @@
                     <% user.trips.each do |trip| %>
                             <h4>User name: <%= user.name %></h4>
                             <h4>Trip name: <%= link_to trip.name, "/trips/#{trip.id}" %></h4>
-                            <h4>Start date: <%= trip.startDate %></h4>
+                            <h4>Start date: <%= trip.startDate.strftime( "%A, %e %B, %Y") %></h4>
                             <h4>Description: <%= trip.description %></h4>
                             <h4>Trip ID: <%= trip.id %></h4>
                             <h4>trip.user_id: <%= trip.user_id %></h4>

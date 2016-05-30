@@ -4,7 +4,12 @@
 <p> Email: <%= @user.email %> </p>
 <p> Password digest: <%= @user.password_digest %> </p>
 
-<%= link_to( "Check your trips", trips_path( @user)) %>
+<%= link_to( "Create and Check your trips", trips_path( @user)) %>
+<br>
+<br>
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
 
 <br>
 <br>

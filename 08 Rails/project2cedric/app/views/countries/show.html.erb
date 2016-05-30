@@ -1,9 +1,21 @@
 <h2><%= @country.name %></h2>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
+
+<br>
+<br>
 
 <div id="map"></div>
 
+<br>
+<br>
+
 <%= link_to(image_tag( @country.flag, :class => 'thumbnail'), @country) %>
+<br>
+<br>
+
 <ul>
     <li>Location: <%= link_to @country.location.name, "/locations/#{@country.location.id}" %></li>
     <li>Capital city: <%= @country.capitalCity %></li>
@@ -14,8 +26,17 @@
     <li>Population density: <%= @country.popDensity %></li>
 </ul>
 
-  <%= link_to "See all the countries", countries_path, :class => "links" %>
-  <%= link_to "See all the locations", locations_path, :class => "links" %>
+
+<h3>Visits:</h3>
+
+<% @country.visits.each do |visit| %>
+    <h3><%= visit.name %>:</h3>
+    <p><%= link_to( image_tag(visit.image, :class => 'thumbnail'), visit ) %></p>
+<% end %>
+
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
 
 
 <script>

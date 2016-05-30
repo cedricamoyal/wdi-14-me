@@ -1,0 +1,24 @@
+<h2><%= @step.name %></h2>
+
+
+<%= link_to(image_tag( @step.visit.image, :class => 'thumbnail'), @step) %>
+<h4>Visit name: <%= link_to @step.visit.name, "/visits/#{@step.visit.id}" %></h4>
+<h4>Trip name: <%= @step.trip.name %></h4>
+<h4>Description: <%= @step.visit.description %></h4>
+<h4>Duration: <%= @step.duration %></h4>
+<h4>Position: <%= @step.position %></h4>
+
+<br>
+
+<%= link_to "Link to: #{@step.trip.name}", "/trips/#{@step.trip.id}", :class => "links" %>
+<br>
+<%= link_to "All my trips", "/trips", :class => "links" %>
+
+<br>
+<br>
+
+
+<div class="controls">
+  <%= link_to "Edit Step", edit_step_path( @step ), :class => "links" %>
+  <%= link_to "Delete Step", @step, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %>
+</div>

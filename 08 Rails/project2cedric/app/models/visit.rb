@@ -15,4 +15,5 @@
 class Visit < ActiveRecord::Base
   belongs_to :country
   belongs_to :theme
+  has_many :steps
 end

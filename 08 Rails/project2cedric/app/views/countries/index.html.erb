@@ -1,10 +1,17 @@
 <h2>This should show all the countries:</h2>
 
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
+
 <ul>
   <% @countries.each do |country| %>
 
     <li>
+          <br>
           <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+          <br>
+          <br>
           <ul>
               <li>Name: <%= link_to country.name, "/countries/#{country.id}" %></li>
               <li>Location: <%= link_to country.location.name, "/locations/#{country.location.id}" %></li>
@@ -14,13 +21,17 @@
               <li>Population: <%= country.population %></li>
               <li>Area: <%= country.area %></li>
               <li>Population density: <%= country.popDensity %></li>
+              <br>
+              <hr>
           </ul>
     </li>
 
   <% end %>
 </ul>
 
-  <%= link_to "See all locations", locations_path, :class => "links" %>
+<%= link_to "See all the visits", visits_path, :class => "links" %>
+<%= link_to "See all the countries", countries_path, :class => "links" %>
+<%= link_to "See all the locations", locations_path, :class => "links" %>
 <!--
 t.text :name
 t.integer :location_id

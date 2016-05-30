@@ -12,4 +12,5 @@
 
 class Location < ActiveRecord::Base
   has_many :countries
+  has_many :visits, :through => :countries
 end

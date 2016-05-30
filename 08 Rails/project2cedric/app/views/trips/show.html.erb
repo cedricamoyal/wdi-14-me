@@ -6,7 +6,80 @@
 <h4>Trip ID: <%= @trip.id %></h4>
 <h4>trip.user_id: <%= @trip.user_id %></h4>
 
+<br>
+<br>
+
+<div id="map"></div>
+
+<br>
+<br>
+
+<h3>The different steps of the trip:</h3>
+
+<% stepsPosition = @trip.steps.sort do |s1, s2| %>
+  <% s1.position <=> s2.position %>
+<%end%>
+
+<% stepStartdate = @trip.startDate %>
+
+<% stepsPosition.each do |step| %>
+
+        <h3><%= step.name %>:</h3>
+        <h3><%= step.visit.name %>:</h3>
+        <p><%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %></p>
+        <h4>Description: <%= step.visit.description %></h4>
+        <h4>Duration: <%= step.duration %></h4>
+        <h4>From: <%= stepStartdate.strftime( "%A, %e %B, %Y") %></h4>
+        <h4>To: <%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </h4>
+        <h4>Position: <%= step.position %></h4>
+
+        <% stepStartdate += step.duration.to_i %>
+
+
+
+<% end %>
+
+
+<%= link_to "Create a new step", new_step_path(@current_user) %>
+
+
+<br>
+<%= link_to "All my trips", "/trips", :class => "links" %>
+<br>
+
+
+
 <div class="controls">
   <%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %>
   <%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %>
 </div>
+
+
+<script>
+    function initMap() {
+
+      var mapDiv = document.getElementById('map');
+
+                var map = new google.maps.Map(mapDiv, {
+                  center: {lat: <%= stepsPosition.first.visit.visitLatitude %>, lng: <%= stepsPosition.first.visit.visitLongitude%>},
+                  zoom: 4
+                });
+
+
+<% @trip.steps.each do |step| %>
+
+      var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/<%= step.position %>.png';
+
+      var marker = new google.maps.Marker({
+        position: {lat: <%= step.visit.visitLatitude %>, lng: <%= step.visit.visitLongitude %>},
+        map: map,
+        icon: iconBase
+      });
+
+<% end %>
+
+
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async defer></script>

@@ -9,4 +9,5 @@
 
 class Theme < ActiveRecord::Base
   has_many :visits
+  has_many :steps, :through => :visits
 end
