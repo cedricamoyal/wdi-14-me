@@ -1,0 +1,53 @@
+<h2><%= @country.name %></h2>
+
+
+<div id="map"></div>
+
+<%= link_to(image_tag( @country.flag, :class => 'thumbnail'), @country) %>
+<ul>
+    <li>Location: <%= link_to @country.location.name, "/locations/#{@country.location.id}" %></li>
+    <li>Capital city: <%= @country.capitalCity %></li>
+    <li>Language: <%= @country.language %></li>
+    <li>Currency: <%= @country.currency %></li>
+    <li>Population: <%= @country.population %></li>
+    <li>Area: <%= @country.area %></li>
+    <li>Population density: <%= @country.popDensity %></li>
+</ul>
+
+  <%= link_to "See all the countries", countries_path, :class => "links" %>
+  <%= link_to "See all the locations", locations_path, :class => "links" %>
+
+
+<script>
+    function initMap() {
+
+      var mapDiv = document.getElementById('map');
+      var map = new google.maps.Map(mapDiv, {
+        center: {lat: <%= @country.capitalLatitude %>, lng: <%= @country.capitalLongitude %>},
+        zoom: 8
+      });
+
+      var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/A.png';
+
+      var marker = new google.maps.Marker({
+        position: {lat: <%= @country.capitalLatitude %>, lng: <%= @country.capitalLongitude %>},
+        map: map,
+        icon: iconBase
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async defer></script>
+
+
+      <!-- t.text :name
+      t.integer :location_id
+      t.text :capitalCity
+      t.text :currency
+      t.text :population
+      t.text :area
+      t.text :popDensity
+      t.text :flag
+      t.text :visa
+      t.text :capitalLatitude
+      t.text :capitalLongitude -->

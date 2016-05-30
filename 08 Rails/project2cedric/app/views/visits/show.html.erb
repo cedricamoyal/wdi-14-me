@@ -1,0 +1,37 @@
+<h2><%= @visit.name %></h2>
+
+
+<div id="map"></div>
+
+  <%= link_to(image_tag( @visit.image, :class => 'thumbnail'), @visit) %>
+  <ul>
+      <li>Name: <%= link_to @visit.name, "/visits/#{@visit.id}" %></li>
+      <li>Country: <%= link_to @visit.country.name, "/countries/#{@visit.country.id}" %></li>
+      <li>Descrition: <%= @visit.description %></li>
+  </ul>
+
+  <%= link_to "See all the visits", visits_path, :class => "links" %>
+  <%= link_to "See all the countries", countries_path, :class => "links" %>
+  <%= link_to "See all the locations", locations_path, :class => "links" %>
+
+
+<script>
+    function initMap() {
+
+      var mapDiv = document.getElementById('map');
+      var map = new google.maps.Map(mapDiv, {
+        center: {lat: <%= @visit.visitLatitude %>, lng: <%= @visit.visitLongitude %>},
+        zoom: 8
+      });
+
+      var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/A.png';
+
+      var marker = new google.maps.Marker({
+        position: {lat: <%= @visit.visitLatitude %>, lng: <%= @visit.visitLongitude %>},
+        map: map,
+        icon: iconBase
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async defer></script>

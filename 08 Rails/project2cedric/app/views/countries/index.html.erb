@@ -1,0 +1,35 @@
+<h2>This should show all the countries:</h2>
+
+<ul>
+  <% @countries.each do |country| %>
+
+    <li>
+          <%= link_to(image_tag( country.flag, :class => 'thumbnail'), country) %>
+          <ul>
+              <li>Name: <%= link_to country.name, "/countries/#{country.id}" %></li>
+              <li>Location: <%= link_to country.location.name, "/locations/#{country.location.id}" %></li>
+              <li>Capital city: <%= country.capitalCity %></li>
+              <li>Language: <%= country.language %></li>
+              <li>Currency: <%= country.currency %></li>
+              <li>Population: <%= country.population %></li>
+              <li>Area: <%= country.area %></li>
+              <li>Population density: <%= country.popDensity %></li>
+          </ul>
+    </li>
+
+  <% end %>
+</ul>
+
+  <%= link_to "See all locations", locations_path, :class => "links" %>
+<!--
+t.text :name
+t.integer :location_id
+t.text :capitalCity
+t.text :currency
+t.text :population
+t.text :area
+t.text :popDensity
+t.text :flag
+t.text :visa
+t.text :capitalLatitude
+t.text :capitalLongitude -->

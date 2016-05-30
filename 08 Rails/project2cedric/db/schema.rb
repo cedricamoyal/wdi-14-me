@@ -11,15 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528052816) do
+ActiveRecord::Schema.define(version: 20160530012837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.text    "name"
+    t.integer "location_id"
+    t.text    "capitalCity"
+    t.text    "currency"
+    t.text    "population"
+    t.text    "area"
+    t.text    "popDensity"
+    t.text    "flag"
+    t.text    "visa"
+    t.text    "capitalLatitude"
+    t.text    "capitalLongitude"
+    t.text    "language"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.text "name"
     t.text "population"
     t.text "area"
+  end
+
+  create_table "themes", force: :cascade do |t|
+    t.text "name"
+    t.text "description"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -38,6 +58,16 @@ ActiveRecord::Schema.define(version: 20160528052816) do
     t.boolean  "admin",           default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.text    "name"
+    t.integer "country_id"
+    t.integer "theme_id"
+    t.text    "description"
+    t.text    "image"
+    t.text    "visitLatitude"
+    t.text    "visitLongitude"
   end
 
 end

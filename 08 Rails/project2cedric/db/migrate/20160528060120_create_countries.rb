@@ -13,10 +13,17 @@ class CreateCountries < ActiveRecord::Migration
       t.text :popDensity
       t.text :flag
       t.text :visa
-      
-      t.text :capitalLongitude
       t.text :capitalLatitude
+      t.text :capitalLongitude
+
 
     end
   end
 end
+
+# project2cedric $ rake db:migrate
+# project2cedric $ annotate
+# project2cedric $ rails generate controller Countries index new show edit
+
+# project2cedric $ rails generate migration AddLanguageToCountries language:text
+# project2cedric $ rake db:migrate
