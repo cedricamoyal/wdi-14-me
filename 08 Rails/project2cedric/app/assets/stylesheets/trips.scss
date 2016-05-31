@@ -1,3 +1,51 @@
-// Place all the styles related to the Trips controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 200px;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+
+      #map {
+
+
+        width: 350px;
+        height: 500px;
+        border: 1px solid blue;
+        display: inline-block;
+      }
+
+      #right-panel {
+        margin: 20px;
+        border-width: 2px;
+        width: 20%;
+      
+        text-align: left;
+        padding-top: 20px;
+        border: 1px solid green;
+        display: inline-block;
+      }
+      #directions-panel {
+        margin-top: 20px;
+        background-color: #FFEE77;
+        padding: 10px;
+        border: 1px solid pink;
+      }
+
+
+
+      .details {
+        display: block;
+        border: 3px dashed orange;
+      }
