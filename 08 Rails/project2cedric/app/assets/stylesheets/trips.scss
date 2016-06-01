@@ -1,12 +1,18 @@
+body {
+  // background-color: #F1F1F7;
+  background-color: #DCDCE4;
+}
+
 
 #right-panel {
   // border: 2px solid green;
-  border: 2px dashed grey;
+  border: 1px solid #e7e7e7;
   border-radius: 8px;
   padding: 20px;
 
   line-height: 26px;
-  height: 450px;
+  height: 480px;
+  background-color: #f8f8f8;
 }
 
 .container {
@@ -25,18 +31,19 @@
 
 .details {
 
-  height: 450px;
-  border: 2px dashed grey;
+  height: 480px;
+  border: 1px solid #e7e7e7;
   border-radius: 8px;
   padding: 20px;
+  background-color: #f8f8f8;
 
 }
 
 
 #map {
   width: 100%;
-  height: 450px;
-  border: 2px dashed grey;
+  height: 480px;
+  border: 1px solid #e7e7e7;
   border-radius: 8px;
 }
 
@@ -56,8 +63,10 @@
 
 #directions-panel {
   margin-top: 20px;
-  background-color: #F1F0EC;
+  background-color: #f8f8f8;
   padding: 10px;
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
 }
 
 #waypoints {
@@ -72,6 +81,10 @@
   display:inline-block;
 }
 
+#submit {
+    // border-radius: 5px;
+}
+
 
 
 b {
@@ -79,14 +92,25 @@ b {
 }
 
 .stepsDetails{
-  height: 560px;
-  border: 2px dashed grey;
+  height: 580px;
+  border: 1px solid #e7e7e7;
   border-radius: 8px;
   padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.stepsDetailsShow{
+  border: 1px solid #e7e7e7;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  height: 562px;
 }
 
 .col-md-4 {
-  // border: 2px solid orange;
+  padding: 10px;
+}
+.col-md-8 {
   padding: 10px;
 }
 
@@ -98,11 +122,26 @@ b {
   text-align: justify;
 }
 
+.stepsDetailsShow h4 {
+  text-align: center;
+}
+
+.stepsDetailsShow p {
+  text-align: justify;
+}
+
 .thumbnail {
   width: 100%;
   height: 200px;
   margin-top: 25px;
   margin-bottom: 25px;
+}
+
+.featured {
+  width: 100%;
+  height: 520px;
+  // margin-top: 25px;
+  // margin-bottom: 25px;
 }
 
 .btn {

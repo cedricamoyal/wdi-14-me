@@ -1,28 +1,29 @@
-<h2>This should show all the visits:</h2>
 
-<%= link_to "See all the visits", visits_path, :class => "links" %>
-<%= link_to "See all the countries", countries_path, :class => "links" %>
-<%= link_to "See all the locations", locations_path, :class => "links" %>
 
-<ul>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <h2>This should show all the visits:</h2>
+          </div>
+  </div>
+
+  <br>
+
   <% @visits.each do |visit| %>
+        <div class='col-md-4'>
+          <div class="stepsDetails">
 
-    <br>
-    <li>
-          <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
-          <br>
-          <br>
-          <ul>
-              <li>Name: <%= link_to visit.name, "/visits/#{visit.id}" %></li>
-              <li>Country: <%= link_to visit.country.name, "/countries/#{visit.country.id}" %></li>
-              <li>Descrition: <%= visit.description %></li>
-          </ul>
-    </li>
-    <br>
-    <hr>
+              <h4><%= link_to visit.name, "/visits/#{visit.id}" %></h4>
+
+              <%= link_to(image_tag( visit.image, :class => 'thumbnail'), visit) %>
+              <h5>Location: <span><%= link_to visit.country.location.name, "/locations/#{visit.country.location.id}" %></span></h5>
+              <h5>Country: <span><%= link_to visit.country.name, "/countries/#{visit.country.id}" %></span></h5>
+              <h5>Description: <span><%= truncate( visit.description, :length => 300)%></span></h5>
+            </div>
+    </div>
 
   <% end %>
-</ul>
+
 
 <%= link_to "See all the visits", visits_path, :class => "links" %>
 <%= link_to "See all the countries", countries_path, :class => "links" %>

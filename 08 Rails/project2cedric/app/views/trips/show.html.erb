@@ -10,7 +10,7 @@
           </div>
   </div>
 </div>
-<br>
+
 
 <div class='container'>
 
@@ -140,12 +140,15 @@
 
                   <%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %>
 
+                  <h5>Location: <span><%= link_to step.visit.country.location.name, "/locations/#{step.visit.country.location.id}" %></span></h5>
+                  <h5>Country: <span><%= link_to step.visit.country.name, "/countries/#{step.visit.country.id}"  %></span></h5>
+
                   <h5>Duration: <span><%= step.duration %></span></h5>
                   <h5>From: <span><%= stepStartdate.strftime( "%A, %e %B, %Y") %></span></h5>
                   <h5>To: <span><%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </span></h5>
 
 
-                  <h5>Description: <span><%= truncate( step.visit.description, :length => 200)%></span></h5>
+                  <h5>Description: <span><%= truncate( step.visit.description, :length => 100)%></span></h5>
 
                   <% stepStartdate += step.duration.to_i %>
                </div>
