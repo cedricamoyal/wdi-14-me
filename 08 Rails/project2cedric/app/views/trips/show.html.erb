@@ -1,113 +1,172 @@
-<h2><%= @trip.name %></h2>
 
-<h4>Start date: <%= @trip.startDate %></h4>
-<h4>Description: <%= @trip.description %></h4>
 
-<h4>Trip ID: <%= @trip.id %></h4>
-<h4>trip.user_id: <%= @trip.user_id %></h4>
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
+<br>
+
+<div class='container'>
+
+<div class='row text-center'>
+        <div class='col-md-12'>
+            <h2><%= @trip.name %></h2>
+        </div>
+</div>
+
+<br>
 
 <% stepsPosition = @trip.steps.sort do |s1, s2| %>
   <% s1.position <=> s2.position %>
 <%end%>
 
-<div id="map"></div>
-    <div id="right-panel">
-    <div>
-    <b>Start:</b>
-          <select id="start">
 
-              <% stepsPosition.each do |step| %>
+<div class='row'>
 
-              <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
+      <div class='col-md-3 details'>
+          <div class='details'>
+          <h4>Start date: <%= @trip.startDate %></h4>
+          <h4>Description: <%= @trip.description %></h4>
 
-              <% end %>
-          </select>
-    <br>
-    <b>Waypoints:</b> <br>
-    <i>(Ctrl-Click for multiple selection)</i> <br>
-    <select multiple id="waypoints">
-
-      <% stepsPosition.each do |step| %>
-
-      <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
-
-      <% end %>
-
-    </select>
-    <br>
-    <b>End:</b>
-    <select id="end">
-
-      <% stepsPosition.each do |step| %>
-
-      <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
-
-      <% end %>
-
-
-    </select>
-    <br>
-      <input type="submit" id="submit">
-    </div>
-
-    </div>
-    <div id="directions-panel"></div>
+          <h4>Trip ID: <%= @trip.id %></h4>
+          <h4>trip.user_id: <%= @trip.user_id %></h4>
+      </div>
+      </div>
 
 
 
 
+      <div class='col-md-6'>
+        <div id="map"></div>
+      </div>
 
 
+          <div class='col-md-3'>
+                <div id="right-panel">
+              <b>Start:</b>
+                    <select id="start">
 
-<br>
-<br>
+                        <% stepsPosition.each do |step| %>
 
+                        <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
 
+                        <% end %>
+                    </select>
+              <br>
+              <br>
+              <b>Waypoints:</b> <br>
+              <i>(Ctrl-Click for multiple selection)</i> <br>
+              <select multiple id="waypoints">
 
-<br>
-<br>
+                <% stepsPosition.each do |step| %>
 
-<h3>The different steps of the trip:</h3>
+                <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
 
+                <% end %>
 
+              </select>
+              <br>
+              <br>
+              <b>End:</b>
+              <select id="end">
 
-<% stepStartdate = @trip.startDate %>
+                <% stepsPosition.each do |step| %>
 
-<% stepsPosition.each do |step| %>
+                <option value="<%= step.visit.visitLatitude %>, <%= step.visit.visitLongitude %>"><%= step.visit.name %></option>
 
-<div class="details">
-        <h3><%= step.name %>:</h3>
-        <h3><%= step.visit.name %>:</h3>
-        <p><%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %></p>
-        <h4>Description: <%= step.visit.description %></h4>
-        <h4>Duration: <%= step.duration %></h4>
-        <h4>From: <%= stepStartdate.strftime( "%A, %e %B, %Y") %></h4>
-        <h4>To: <%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </h4>
-        <h4>Position: <%= step.position %></h4>
-
-        <% stepStartdate += step.duration.to_i %>
-
-  </div>
-
-
-
-<% end %>
-
-
-<%= link_to "Create a new step", new_step_path(@current_user) %>
+                <% end %>
 
 
-<br>
-<%= link_to "All my trips", "/trips", :class => "links" %>
-<br>
+              </select>
+              <br>
+              <br>
+
+                  <div class="submitCenter1"><div class="submitCenter2">
+                    <input type="submit" id="submit">
+                  </div></div>
 
 
+              </div>
+              </div>
 
-<div class="controls">
-  <%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %>
-  <%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %>
 </div>
 
+<div class='row'>
+        <div class='col-md-12'>
+      <div id="directions-panel"></div>
+    </div>
+</div>
+
+
+</div>
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
+<br>
+
+
+<div class='container'>
+
+  <div class='row'>
+          <div class='col-md-12'>
+             <h3>The different steps of the trip:</h3>
+             <br>
+          </div>
+  </div>
+
+          <% stepStartdate = @trip.startDate %>
+
+          <% stepsPosition.each do |step| %>
+
+              <div class='col-md-4'>
+                <div class="stepsDetails">
+                  <h4><%= step.visit.name %></h4>
+
+                  <h4>Position: <%= step.position %></h4>
+
+                  <%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %>
+
+                  <h5>Duration: <%= step.duration %></h5>
+                  <h5>From: <%= stepStartdate.strftime( "%A, %e %B, %Y") %></h5>
+                  <h5>To: <%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </h5>
+
+                  <br>
+                  <h5>Description:</h5>
+
+                  <p><%= truncate( step.visit.description, :length => 200)%></p>
+
+                  <% stepStartdate += step.duration.to_i %>
+               </div>
+             </div>
+
+          <% end %>
+
+</div>
+
+<br>
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Create a new step", new_step_path(@current_user) %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Edit Trip", edit_trip_path( @trip ), :class => "links" %></button>
+                <button type='button' class='btn btn-lg btn-default'><%= link_to "Delete Trip", @trip, :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => "links" %></button>
+          </div>
+  </div>
+</div>
 
 <script>
 
