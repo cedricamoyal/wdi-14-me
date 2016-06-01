@@ -20,7 +20,7 @@
         </div>
 </div>
 
-<br>
+
 
 <% stepsPosition = @trip.steps.sort do |s1, s2| %>
   <% s1.position <=> s2.position %>
@@ -29,13 +29,13 @@
 
 <div class='row'>
 
-      <div class='col-md-3 details'>
+      <div class='col-md-3'>
           <div class='details'>
-          <h4>Start date: <%= @trip.startDate %></h4>
-          <h4>Description: <%= @trip.description %></h4>
+          <h5>Start date: <span><%= @trip.startDate %></span></h5>
+          <h5>Description: <span><%= @trip.description %></span></h5>
 
-          <h4>Trip ID: <%= @trip.id %></h4>
-          <h4>trip.user_id: <%= @trip.user_id %></h4>
+          <h5>Trip ID: <span><%= @trip.id %></span></h5>
+          <h5>trip.user_id: <span><%= @trip.user_id %></span></h5>
       </div>
       </div>
 
@@ -121,7 +121,7 @@
 
 <div class='container'>
 
-  <div class='row'>
+  <div class='row text-center'>
           <div class='col-md-12'>
              <h3>The different steps of the trip:</h3>
              <br>
@@ -140,14 +140,12 @@
 
                   <%= link_to( image_tag(step.visit.image, :class => 'thumbnail'), step ) %>
 
-                  <h5>Duration: <%= step.duration %></h5>
-                  <h5>From: <%= stepStartdate.strftime( "%A, %e %B, %Y") %></h5>
-                  <h5>To: <%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </h5>
+                  <h5>Duration: <span><%= step.duration %></span></h5>
+                  <h5>From: <span><%= stepStartdate.strftime( "%A, %e %B, %Y") %></span></h5>
+                  <h5>To: <span><%= (stepStartdate + step.duration.to_i).strftime( "%A, %e %B, %Y")%> </span></h5>
 
-                  <br>
-                  <h5>Description:</h5>
 
-                  <p><%= truncate( step.visit.description, :length => 200)%></p>
+                  <h5>Description: <span><%= truncate( step.visit.description, :length => 200)%></span></h5>
 
                   <% stepStartdate += step.duration.to_i %>
                </div>
