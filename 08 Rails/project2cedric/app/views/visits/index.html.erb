@@ -7,11 +7,10 @@
           </div>
   </div>
 
-  <br>
 
   <% @visits.each do |visit| %>
         <div class='col-md-4'>
-          <div class="stepsDetails">
+          <div class="stepsDetailsShow">
 
               <h4><%= link_to visit.name, "/visits/#{visit.id}" %></h4>
 
@@ -24,7 +23,4 @@
 
   <% end %>
 
-
-<%= link_to "See all the visits", visits_path, :class => "links" %>
-<%= link_to "See all the countries", countries_path, :class => "links" %>
-<%= link_to "See all the locations", locations_path, :class => "links" %>
+</div>

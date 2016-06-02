@@ -156,3 +156,27 @@ line-height: 1.42857143;
 color: #333;
 font-weight: 200;
 }
+
+.specialForm p {
+  text-align: center;
+}
+
+.label1 {
+  width: 200px;
+  // text-align: right;
+  margin-right: 10px;
+  border: 1px solid grey;
+  border-radius: 3px;
+}
+.label2 {
+  width: 200px;
+  margin-left: 10px;
+  // border: 1px black solid;
+
+}
+
+.specialForm {
+  height: auto;
+  padding: 55px;
+
+}

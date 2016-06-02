@@ -18,7 +18,7 @@ class TripsController < ApplicationController
     def create
       trip = Trip.create trip_params
 
-      redirect_to trip
+      redirect_to new_step_path
     end
 
     def edit
@@ -42,7 +42,7 @@ class TripsController < ApplicationController
     private
 
     def trip_params
-      params.require(:trip).permit(:name, :description, :startDate, :user_id)
+      params.require(:trip).permit(:name, :description, :startDate, :user_id, :image)
     end
 
 end

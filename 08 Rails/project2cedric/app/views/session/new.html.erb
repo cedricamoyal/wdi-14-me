@@ -1,6 +1,16 @@
-<h2>Login</h2>
+
+<div class='container'>
+  <div class='row text-center'>
+          <div class='col-md-12'>
+      <h2>Login</h2>
+    </div>
+</div>
+
+<br>
 
 <%= form_tag login_path do %>
+<div class='col-md-6 col-md-offset-3'>
+  <div class="stepsDetailsShow specialForm">
   <p>
     <%= label_tag :email %>
     <%= email_field_tag :email %>
@@ -10,5 +20,12 @@
     <%= password_field_tag :password %>
   </p>
 
+  <br>
+
   <%= submit_tag "Login" %>
 <% end %>
+
+</div>
+</div>
+
+</div>

@@ -5,10 +5,9 @@
             </div>
     </div>
 
-
   <% @countries.each do |country| %>
         <div class='col-md-4'>
-            <div class="stepsDetails">
+            <div class="stepsDetailsShow">
 
               <h4><%= link_to country.name, "/countries/#{country.id}" %></h4>
 
@@ -24,6 +23,8 @@
             </div>
     </div>
   <% end %>
+
+</div>
 
 <!--
 t.text :name
