@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 Example</title>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+<style>
+svg {
+  border: 1px solid green;
+}
+</style>
+
+  </head>
+  <body>
+    <script>
+
+      var outerWidth  = 500;
+      var outerHeight = 250;
+      var margin = { left: 20, top: 20, right: 20, bottom: 20 };
+
+      var xColumn = "longitude";
+      var yColumn = "latitude";
+      var rColumn = "population";
+      var peoplePerPixel = 500000;
+
+      var innerWidth  = outerWidth  - margin.left - margin.right;
+      var innerHeight = outerHeight - margin.top  - margin.bottom;
+
+      var svg = d3.select("body").append("svg")
+        .attr("width",  outerWidth)
+        .attr("height", outerHeight);
+
+      var g = svg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      var xScale = d3.scale.linear().range([0, innerWidth]);
+      var yScale = d3.scale.linear().range([innerHeight, 0]);
+      var rScale = d3.scale.sqrt();
+
+var peopleMax;
+
+      function render(data){
+
+        xScale.domain( d3.extent(data, function (d){ return d[xColumn]; }));
+        yScale.domain( d3.extent(data, function (d){ return d[yColumn]; }));
+        rScale.domain([0, d3.max(data, function (d){ return d[rColumn]; })]);
+
+        // Compute the size of the biggest circle as a function of peoplePerPixel.
+        peopleMax = rScale.domain()[1];
+        var rMin = 0;
+        var rMax = Math.sqrt(peopleMax / (peoplePerPixel * Math.PI));
+        rScale.range([rMin, rMax]);
+
+        var circles = g.selectAll("circle").data(data);
+        circles.enter().append("circle");
+        circles
+          .attr("cx", function (d){ return xScale(d[xColumn]); })
+          .attr("cy", function (d){ return yScale(d[yColumn]); })
+          .attr("r",  function (d){ return rScale(d[rColumn]); });
+        circles.exit().remove();
+      }
+
+
+
+var hono;
+var minLong;
+
+
+      function minLatLong(data) {
+        minLong = d3.min(data, function (d){ return d[xColumn]; });
+        // console.log(minLong);
+        var minLat = d3.min(data, function (d){ return d[yColumn]; });
+        // console.log("minLat = " + minLat);
+
+      }
+
+
+      function type(d){
+        d.latitude   = +d.latitude;
+        d.longitude  = +d.longitude;
+        d.population = +d.population;
+        return d;
+      }
+
+      d3.csv("geonames_cities100000.csv", type, render);
+
+      d3.csv("geonames_cities100000.csv", type, minLatLong);
+
+// 
+// const myObject = [
+//   {
+//     "country": "Sweden",
+//     "countryCode": "SE",
+//     "name": "Sweden",
+//     "parentid": 1,
+//     "placeType": {
+//       "code": 12,
+//       "name": "Country"
+//     },
+//     "url": "http://where.yahooapis.com/v1/place/23424954",
+//     "woeid": 23424954
+//   },
+//   {
+//     "country": "United States",
+//     "countryCode": "US",
+//     "name": "New Haven",
+//     "parentid": 23424977,
+//     "placeType": {
+//       "code": 7,
+//       "name": "Town"
+//     },
+//     "url": "http://where.yahooapis.com/v1/place/2458410",
+//     "woeid": 2458410
+//   },
+//   {
+//     "country": "Japan",
+//     "countryCode": "JP",
+//     "name": "Sapporo",
+//     "parentid": 23424856,
+//     "placeType": {
+//       "code": 7,
+//       "name": "Town"
+//     },
+//     "url": "http://where.yahooapis.com/v1/place/1118108",
+//     "woeid": 1118108
+//   },
+//   {
+//     "country": "United States",
+//     "countryCode": "US",
+//     "name": "Providence",
+//     "parentid": 23424977,
+//     "placeType": {
+//       "code": 7,
+//       "name": "Town"
+//     },
+//     "url": "http://where.yahooapis.com/v1/place/2477058",
+//     "woeid": 2477058
+//   },
+//   {
+//     "country": "United States",
+//     "countryCode": "US",
+//     "name": "Cincinnati",
+//     "parentid": 23424977,
+//     "placeType": {
+//       "code": 7,
+//       "name": "Town"
+//     },
+//     "url": "http://where.yahooapis.com/v1/place/2380358",
+//     "woeid": 2380358
+//   }
+// ];
+//
+// // console.log(myObject)
+//
+// var urlRequest = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=Stack%20Overflow';
+// var request = new XMLHttpRequest();
+// request.open('GET', urlRequest, true);
+//
+// request.onload = function() {
+//   if (request.status >= 200 && request.status < 400) {
+//     // Success!
+//     var data = JSON.parse(request.responseText);
+//     console.log(data.query.pages);
+//     d3.json(data.query.pages)
+//   } else {
+//     // We reached our target server, but it returned an error
+//
+//   }
+// };
+//
+// request.onerror = function() {
+//   // There was a connection error of some sort
+// };
+//
+// request.send();
+
+    </script>
+  </body>
+</html>
