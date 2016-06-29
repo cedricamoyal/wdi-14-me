@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<style>
+
+.forceBox1{
+  /*border: 1px solid green;*/
+  width: 100%;
+}
+
+.forceBoxText1{
+  border: 1px solid gainsboro;
+  height: 100%;
+  text-align: center;
+}
+
+
+.row{
+  /*border: 2px solid orange;*/
+}
+
+.col-md-9{
+  /*border: 2px solid black;*/
+  padding: 0;
+  height: 95vh;
+}
+.col-md-3{
+  /*border: 2px solid black;*/
+  padding: 0;
+  height: 95vh;
+}
+svg {
+  border: 1px solid gainsboro;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<div class='container'>
+  <div class='row'>
+          <div class='col-md-9'>
+                  <div class="forceBox1"></div>
+          </div>
+           <div class='col-md-3'>
+                   <div class="forceBoxText1"> <p>Double click on the circles !!</p></div>
+           </div>
+    </div>
+</div>
+
+
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script>
+
+  var w = 900;
+	var h = 710;
+  var g = 0.05;
+  var c = -600;
+  var d = 250;
+
+  var svg1 = d3.select(".forceBox1")
+          .append("svg")
+          .attr("viewBox", "0 0 " + w + " " + h )
+          .attr("preserveAspectRatio", "xMidYMid meet");
+
+  // var fill = d3.scale.category10();
+
+
+//////////////////////////////////
+		var dataset1 = {
+			nodes:[
+					{name:"Cedric Photo", "group": "#FAF9F4", "radius": 80},
+
+	        {name:"Civil", "group": "#52B4AF", "radius": 60},
+					{name:"Web Dev", "group": "rgb(183, 178, 224)", "radius": 60},
+
+					{name:"PM", "group": "#B6DEDC", "radius": 45},
+					{name:"PE", "group": "#B6DEDC", "radius": 45},
+          {name:"SE", "group": "#B6DEDC", "radius": 45},
+
+          {name:"P4", "group": "rgb(203, 170, 193)", "radius": 45},
+          {name:"P3", "group": "rgb(203, 170, 193)", "radius": 45},
+          {name:"P2", "group": "rgb(203, 170, 193)", "radius": 45},
+          {name:"P1", "group": "rgb(203, 170, 193)", "radius": 45},
+
+			],
+			edges:[
+					{source: 0, target: 1},
+					{source: 0, target: 2},
+					{source: 1, target: 3},
+					{source: 1, target: 4},
+          {source: 1, target: 5},
+          {source: 2, target: 6},
+          {source: 2, target: 7},
+          {source: 2, target: 8},
+          {source: 2, target: 9}			]
+		};
+
+		var force1 = d3.layout.force()
+								.nodes(dataset1.nodes)
+								.links(dataset1.edges)
+								.size([w, h])
+                .gravity(g)
+                .charge(c)
+                .linkDistance(d)
+								.start();
+
+		var edges1 = svg1.selectAll("line1")
+						.data(dataset1.edges)
+						.enter()
+						.append("line")
+            .attr('class', 'line1')
+						.style("stroke", "#ccc")
+						.style("stroke-width", 1);
+
+
+    var $forceBoxText1 = $(".forceBoxText1");
+
+		var nodes1 = svg1.selectAll("circle1")
+						.data(dataset1.nodes)
+						.enter()
+						.append("circle")
+            .attr('class', 'circle1')
+						.attr("r", function(d) { return d.radius; })
+            .style("fill", function(d) { return d.group; })
+            .style("stroke", "#555")
+						.call(force1.drag)
+            .on("dblclick", function (d) {
+              // $forceBoxText1.empty();
+                    var $nameText1 = $("<p>");
+                    $nameText1 = d.name;
+                    $forceBoxText1.append( $nameText1 );
+              console.log("you double clicked on the circle1: " + d.name);
+            });
+
+		var label1 = svg1.selectAll(".mytext1")
+						.data(dataset1.nodes)
+						.enter()
+						.append("text")
+            .attr('class', 'mytext1')
+					    .text(function (d) { return d.name; })
+					    .style("text-anchor", "middle")
+					    .style("fill", "#555")
+					    .style("font-family", "Arial")
+					    .style("font-size", 14);
+
+		force1.on("tick", function(){
+			edges1.attr("x1", function(d){ return d.source.x; })
+				 .attr("y1", function(d){ return d.source.y; })
+				 .attr("x2", function(d){ return d.target.x; })
+				 .attr("y2", function(d){ return d.target.y; });
+			nodes1.attr("cx", function(d){ return d.x; })
+				 .attr("cy", function(d){ return d.y; });
+			label1.attr("x", function(d){ return d.x; })
+    			 .attr("y", function (d) {return d.y + 5; });
+
+		});
+
+  </script>
+
+
+</body>
+</html>

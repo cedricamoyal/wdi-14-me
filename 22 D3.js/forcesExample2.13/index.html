@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<style>
+
+.forceBox1{
+  /*border: 1px solid green;*/
+  width: 100%;
+}
+.forceBox2{
+  /*border: 1px solid green;*/
+  width: 100%;
+}
+.forceBox3{
+  /*border: 1px solid green;*/
+}
+
+.forceBoxText1{
+  /*border: 1px solid pink;*/
+}
+.forceBoxText2{
+  /*border: 1px solid pink;*/
+}
+.forceBoxText3{
+  /*border: 1px solid pink;*/
+}
+
+.row{
+  /*border: 2px solid orange;*/
+}
+
+.col-md-6{
+  /*border: 2px solid black;*/
+  padding: 0;
+}
+
+svg {
+  border: 1px solid gainsboro;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<div class='container'>
+  <div class='row'>
+          <div class='col-md-6'>
+                  <div class="forceBoxText1"></div>
+          </div>
+          <div class='col-md-6'>
+                  <div class="forceBoxText2"></div>
+          </div>
+   </div>
+   <div class='row'>
+           <div class='col-md-12'>
+                   <div class="forceBox1"></div>
+           </div>
+    </div>
+</div>
+
+
+  <script src="//d3js.org/d3.v3.min.js"></script>
+  <script>
+
+  var w = 1200;
+	var h = 750;
+  var g = 0.05;
+  var c = -400;
+  var d = 180;
+
+  var svg1 = d3.select(".forceBox1")
+          .append("svg")
+          .attr("viewBox", "0 0 " + w + " " + h )
+          .attr("preserveAspectRatio", "xMidYMid meet");
+
+  var fill = d3.scale.category20();
+
+
+//////////////////////////////////
+		var dataset1 = {
+			nodes:[
+					{name:"Cedric Photo", "group": 1, "radius": 60},
+
+	        {name:"Civil", "group": 2, "radius": 45},
+					{name:"Web Dev", "group": 3, "radius": 45},
+          {name:"Around the World", "group": 4, "radius": 45},
+
+					{name:"PM", "group": 2, "radius": 30},
+					{name:"PE", "group": 2, "radius": 30},
+          {name:"SE", "group": 2, "radius": 30},
+
+          {name:"Interactive R", "group": 3, "radius": 30},
+          {name:"P4", "group": 3, "radius": 30},
+          {name:"P3", "group": 3, "radius": 30},
+          {name:"P2", "group": 3, "radius": 30},
+          {name:"Tic Tac Toe", "group": 3, "radius": 30},
+
+          {name:"Travelling", "group": 4, "radius": 30},
+          {name:"Working", "group": 4, "radius": 30},
+          {name:"Skateboarding", "group": 4, "radius": 30}
+
+			],
+			edges:[
+					{source: 0, target: 1},
+					{source: 0, target: 2},
+					{source: 0, target: 3},
+					{source: 1, target: 4},
+          {source: 1, target: 5},
+          {source: 1, target: 6},
+          {source: 2, target: 7},
+          {source: 2, target: 8},
+          {source: 2, target: 9},
+          {source: 2, target: 10},
+          {source: 2, target: 11},
+          {source: 3, target: 12},
+          {source: 3, target: 13},
+          {source: 3, target: 14}
+			]
+		};
+
+		var force1 = d3.layout.force()
+								.nodes(dataset1.nodes)
+								.links(dataset1.edges)
+								.size([w, h])
+                .gravity(g)
+                .charge(c)
+                .linkDistance(d)
+								.start();
+
+		var edges1 = svg1.selectAll("line1")
+						.data(dataset1.edges)
+						.enter()
+						.append("line")
+            .attr('class', 'line1')
+						.style("stroke", "#ccc")
+						.style("stroke-width", 1);
+
+
+    var $forceBoxText1 = $(".forceBoxText1");
+
+		var nodes1 = svg1.selectAll("circle1")
+						.data(dataset1.nodes)
+						.enter()
+						.append("circle")
+            .attr('class', 'circle1')
+						.attr("r", function(d) { return d.radius; })
+            .style("fill", function(d) { return fill(d.group); })
+            .style("stroke", function(d) { return d3.rgb(fill(d.group)).darker(); })
+						.call(force1.drag)
+            .on("dblclick", function (d) {
+              // $forceBoxText1.empty();
+                    var $nameText1 = $("<p>");
+                    $nameText1 = d.name;
+                    $forceBoxText1.append( $nameText1 );
+              console.log("you double clicked on the circle1: " + d.name);
+            });
+
+		var label1 = svg1.selectAll(".mytext1")
+						.data(dataset1.nodes)
+						.enter()
+						.append("text")
+            .attr('class', 'mytext1')
+					    .text(function (d) { return d.name; })
+					    .style("text-anchor", "middle")
+					    .style("fill", "#555")
+					    .style("font-family", "Arial")
+					    .style("font-size", 12);
+
+		force1.on("tick", function(){
+			edges1.attr("x1", function(d){ return d.source.x; })
+				 .attr("y1", function(d){ return d.source.y; })
+				 .attr("x2", function(d){ return d.target.x; })
+				 .attr("y2", function(d){ return d.target.y; });
+			nodes1.attr("cx", function(d){ return d.x; })
+				 .attr("cy", function(d){ return d.y; });
+			label1.attr("x", function(d){ return d.x; })
+    			 .attr("y", function (d) {return d.y + 5; });
+
+		});
+//////////////////////////////
+//
+// var dataset2 = {
+//   nodes:[
+//       {name:"Adam2", "group": 4, "radius": 60},
+//       {name:"Bob2", "group": 5, "radius": 45},
+//       {name:"Carrie2", "group": 9, "radius": 42},
+//       {name:"Donovan2", "group": 9, "radius": 39},
+//       {name:"Edward2", "group": 8, "radius": 36},
+//
+//       {name:"", "group": 7, "radius": 5},
+//       {name:"", "group": 7, "radius": 5},
+//       {name:"", "group": 7, "radius": 5},
+//       {name:"", "group": 7, "radius": 5}
+//
+//   ],
+//   edges:[
+//       {source: 0, target: 1},
+//       {source: 0, target: 2},
+//       {source: 0, target: 3},
+//       {source: 0, target: 4}
+//   ]
+// };
+// var force2 = d3.layout.force()
+//             .nodes(dataset2.nodes)
+//             .links(dataset2.edges)
+//             .size([w, h])
+//             .gravity(g)
+//             .charge(c)
+//             .linkDistance(d)
+//             .start();
+//
+// var edges2 = svg1.selectAll("line2")
+//         .data(dataset2.edges)
+//         .enter()
+//         .append("line")
+//         .attr('class', 'line2')
+//         .style("stroke", "#ccc")
+//         .style("stroke-width", 1);
+//
+// var $forceBoxText2 = $(".forceBoxText2");
+//
+// var nodes2 = svg1.selectAll("circle2")
+//         .data(dataset2.nodes)
+//         .enter()
+//         .append("circle")
+//         .attr('class', 'circle2')
+//         .attr("r", function(d) { return d.radius; })
+//         .style("fill", function(d) { return fill(d.group); })
+//         .style("stroke", function(d) { return d3.rgb(fill(d.group)).darker(); })
+//         .call(force2.drag)
+//         .on("dblclick", function (d) {
+//           // $forceBoxText2.empty();
+//                 var $nameText2 = $("<p>");
+//                 $nameText2 = d.name;
+//                 $forceBoxText2.append( $nameText2 );
+//           console.log("you double clicked on the circle2: " + d.name);
+//         });
+//
+// var label2 = svg1.selectAll(".mytext2")
+//         .data(dataset2.nodes)
+//         .enter()
+//         .append("text")
+//         .attr('class', 'mytext2')
+//           .text(function (d) { return d.name; })
+//           .style("text-anchor", "middle")
+//           .style("fill", "#555")
+//           .style("font-family", "Arial")
+//           .style("font-size", 12);
+//
+// force2.on("tick", function(){
+//   edges2.attr("x1", function(d){ return d.source.x; })
+//      .attr("y1", function(d){ return d.source.y; })
+//      .attr("x2", function(d){ return d.target.x; })
+//      .attr("y2", function(d){ return d.target.y; });
+//   nodes2.attr("cx", function(d){ return d.x; })
+//      .attr("cy", function(d){ return d.y; });
+//   label2.attr("x", function(d){ return d.x; })
+//        .attr("y", function (d) {return d.y + 5; });
+//
+// });
+
+////////////////////////////////
+  </script>
+
+
+</body>
+</html>
