@@ -1,6 +1,18 @@
+.forceBoxText1{
+  /*border: 1px solid gainsboro;*/
+  /*height: 100%;*/
+  text-align: left;
+  /*padding: 10px;*/
+}
 
 .webDevAtag {
   color: rgb(203, 170, 193);
+}
+.whoAmIspan {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 35px;
+
 }
 .civilAtag {
   color: "#52B4AF";
@@ -11,12 +23,7 @@
   width: 100%;
 }
 
-.forceBoxText1{
-  border: 1px solid gainsboro;
-  /*height: 100%;*/
-  text-align: left;
-  padding: 10px;
-}
+
 
 
 .row{
@@ -29,10 +36,10 @@
   /*height: 95vh;*/
 }
 .col-md-4{
-  border: 2px solid black;
+  /*border: 2px solid black;*/
   padding: 0;
   /*height: 95vh;*/
 }
 svg {
-  border: 1px solid gainsboro;
+  /*border: 1px solid gainsboro;*/
 }
