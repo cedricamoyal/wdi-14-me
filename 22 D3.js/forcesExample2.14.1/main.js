@@ -104,7 +104,21 @@
 				    .style("text-anchor", "middle")
 				    .style("fill", "#555")
 				    .style("font-family", "Arial")
-				    .style("font-size", 14);
+				    .style("font-size", 14)
+            .call(force1.drag)
+            .on("click", function (d) {
+              $forceBoxText1.empty();
+
+                    var $nameText1 = $("<h3>");
+                    $nameText1.html(d.name1 + " " + d.name2);
+                    $forceBoxText1.append( $nameText1 );
+
+                    var $descriptionText1 = $("<p>");
+                    $descriptionText1.html(d.description);
+                    $forceBoxText1.append( $descriptionText1 );
+
+              console.log("you double clicked on the mytext1: " + d.name);
+            });
 
     var p1 = label1.append('tspan');
     var p2 = label1.append('tspan');
