@@ -1,78 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Document</title>
-
-  <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<style>
-
-.webDevAtag {
-  color: rgb(203, 170, 193);
-}
-.civilAtag {
-  color: "#52B4AF";
-}
-
-.forceBox1{
-  /*border: 1px solid green;*/
-  width: 100%;
-}
-
-.forceBoxText1{
-  border: 1px solid gainsboro;
-  /*height: 100%;*/
-  text-align: left;
-  padding: 10px;
-}
-
-
-.row{
-  /*border: 2px solid orange;*/
-}
-
-.col-md-8{
-  /*border: 2px solid black;*/
-  padding: 0;
-  /*height: 95vh;*/
-}
-.col-md-4{
-  border: 2px solid black;
-  padding: 0;
-  /*height: 95vh;*/
-}
-svg {
-  border: 1px solid gainsboro;
-}
-
-</style>
-
-
-</head>
-<body>
-
-<div class='container'>
-  <!-- <div class='row'> -->
-          <div class='col-md-8 col-sm-12'>
-                  <div class="forceBox1"></div>
-          </div>
-           <div class='col-md-4 col-sm-12'>
-                   <div class="forceBoxText1"> <p>Double click on the circles !!</p></div>
-           </div>
-    <!-- </div> -->
-</div>
-
-
-  <script src="//d3js.org/d3.v3.min.js"></script>
-  <script>
 
   var w = 900;
 	var h = 840;
   var g = 0.05;
-  var c = -600;
-  var d = 250;
+  var c = -800;
+  var d = 275;
 
   var svg1 = d3.select(".forceBox1")
           .append("svg")
@@ -85,28 +16,28 @@ svg {
 //////////////////////////////////
 		var dataset1 = {
 			nodes:[
-					{name:"Cedric Photo", color: "#FAF9F4", radius: 80,
+					{name1:"Who",name2:"am I?", color: "#FAF9F4", radius: 90,
               description: "#"},
 
-	        {name:"Civil", color: "#52B4AF", radius: 60,
+	        {name1:"Ex Civil",name2: "Engineer", color: "#52B4AF", radius: 70,
               description: "#"},
-					{name:"Web Dev", color: "rgb(183, 178, 224)", radius: 60,
+					{name1:"New Web",name2:"Developer", color: "rgb(183, 178, 224)", radius: 70,
               description: "The WDi Program taught me the skills I need to kickstart my career as a web developer. <br>From programming fundamentals (HTML, CSS, JavaScript, jQuery, AJAX, Ruby) to launching full-stack web apps (Rails, Backbone.js, Bootstrap), I learned to solve problems with code while applying industry best practices in a collaborative environment  (Github, Heroku)."},
 
-					{name:"PM", color: "#B6DEDC", radius: 45,
+					{name1:"Project",name2:"Manager", color: "#B6DEDC", radius: 55,
               description: "#"},
-					{name:"PE", color: "#B6DEDC", radius: 45,
+					{name1:"Project",name2:"Engineer", color: "#B6DEDC", radius: 55,
               description: "#"},
-          {name:"SE", color: "#B6DEDC", radius: 45,
+          {name1:"Site",name2:"Engineer", color: "#B6DEDC", radius: 55,
               description: "#"},
 
-          {name:"P4", color: "rgb(203, 170, 193)", radius: 45,
+          {name1:"P4",name2:"#", color: "rgb(203, 170, 193)", radius: 55,
               description: "#"},
-          {name:"P3", color: "rgb(203, 170, 193)", radius: 45,
+          {name1:"P3",name2:"#", color: "rgb(203, 170, 193)", radius: 55,
               description: "#"},
-          {name:"P2", color: "rgb(203, 170, 193)", radius: 45,
+          {name1:"P2",name2:"#", color: "rgb(203, 170, 193)", radius: 55,
               description: 'Travel the world: <br> Link to the application: <a class="webDevAtag" href="https://cedricproject2.herokuapp.com/login " target="_blank">https://cedricproject2.herokuapp.com/login</a> <br>Link to the code: <a class="webDevAtag" href="https://github.com/cedricamoyal/project2cedricheroku " target="_blank">https://github.com/cedricamoyal/project2cedricheroku</a>'},
-          {name:"P1", color: "rgb(203, 170, 193)", radius: 45,
+          {name1:"P1",name2:"#", color: "rgb(203, 170, 193)", radius: 55,
               description: 'Tict Tac Toe: <br> Link to the application: <a class="webDevAtag" href="http://cedricamoyal.github.io/Cedricwebsite " target="_blank">http://cedricamoyal.github.io/Cedricwebsite</a> <br>Link to the code: <a class="webDevAtag" href="https://github.com/cedricamoyal/Cedricwebsite " target="_blank">https://github.com/cedricamoyal/Cedricwebsite</a>'},
 
 			],
@@ -151,11 +82,11 @@ svg {
             .style("fill", function(d) { return d.color; })
             .style("stroke", "#555")
 						.call(force1.drag)
-            .on("dblclick", function (d) {
+            .on("click", function (d) {
               $forceBoxText1.empty();
 
                     var $nameText1 = $("<p>");
-                    $nameText1.html(d.name);
+                    $nameText1.html(d.name1 + " " + d.name2);
                     $forceBoxText1.append( $nameText1 );
 
                     var $descriptionText1 = $("<p>");
@@ -170,11 +101,18 @@ svg {
 						.enter()
 						.append("text")
             .attr('class', 'mytext1')
-					    .text(function (d) { return d.name; })
-					    .style("text-anchor", "middle")
-					    .style("fill", "#555")
-					    .style("font-family", "Arial")
-					    .style("font-size", 14);
+				    .style("text-anchor", "middle")
+				    .style("fill", "#555")
+				    .style("font-family", "Arial")
+				    .style("font-size", 14);
+
+    var p1 = label1.append('tspan');
+    var p2 = label1.append('tspan');
+
+    p1.text(function (d) { return d.name1; });
+    p2.text(function (d) { return d.name2; });
+
+
 
 		force1.on("tick", function(){
 			edges1.attr("x1", function(d){ return d.source.x; })
@@ -183,13 +121,9 @@ svg {
 				 .attr("y2", function(d){ return d.target.y; });
 			nodes1.attr("cx", function(d){ return d.x; })
 				 .attr("cy", function(d){ return d.y; });
-			label1.attr("x", function(d){ return d.x; })
-    			 .attr("y", function (d) {return d.y + 5; });
+			 p1.attr("x", function(d){ return d.x; })
+    			 .attr("y", function (d) {return d.y - 4; });
+       p2.attr("x", function(d){ return d.x; })
+      			.attr("y", function (d) {return d.y + 14; });
 
 		});
-
-  </script>
-
-
-</body>
-</html>
