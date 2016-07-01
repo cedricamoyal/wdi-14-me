@@ -1,0 +1,8 @@
+path {
+  opacity: 0;
+  transition: stroke-dashoffset 6s;
+}
+
+.complete {
+  stroke-dashoffset 0;
+}

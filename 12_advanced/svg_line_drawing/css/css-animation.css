@@ -1,0 +1,27 @@
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+path#svg_1 {
+  stroke: hotpink;
+  stroke-width: 5px;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 3s;
+  /*animation: drawLine 5s linear forwards;*/
+}
+
+path#svg_2 {
+  stroke: purple;
+  stroke-width: 8px;
+  stroke-dasharray: 1300;
+  stroke-dashoffset: 1300;
+  transition: stroke-dashoffset 3s 3s;
+  /*animation: drawLine 5s linear forwards;*/
+}
+
+svg:hover path#svg_1, svg:hover path#svg_2 {
+  stroke-dashoffset: 0;
+}
